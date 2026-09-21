@@ -2,12 +2,10 @@
 include __DIR__ . '/../layouts/header.php';
 $enc = encrypt_id($coupon['id']);
 
-if (!function_exists('validTs')) {
-    function validTs(?string $d): int|false {
-        if (empty($d) || $d === '0000-00-00 00:00:00') return false;
-        $ts = strtotime($d);
-        return ($ts && $ts > 946684800) ? $ts : false;
-    }
+function validTs(?string $d): int|false {
+    if (empty($d) || $d === '0000-00-00 00:00:00') return false;
+    $ts = strtotime($d);
+    return ($ts && $ts > 946684800) ? $ts : false;
 }
 $startsVal  = ($ts = validTs($coupon['starts_at']  ?? null)) ? date('Y-m-d\TH:i', $ts) : '';
 $expiresVal = ($ts = validTs($coupon['expires_at'] ?? null)) ? date('Y-m-d\TH:i', $ts) : '';
