@@ -35,6 +35,11 @@ class Review {
                 $whereClauses[] = "r.order_item_id IS NOT NULL";
             }
 
+            // Photos filter
+            if (!empty($filters['photos']) && $filters['photos'] === 'with_photos') {
+                $whereClauses[] = "r.photo_urls IS NOT NULL AND r.photo_urls != '' AND r.photo_urls != '[]'";
+            }
+
             // Search query (Customer Name, Email, Product Title, Review Title, Body)
             if (!empty($filters['search'])) {
                 $searchWildcard = "%" . trim($filters['search']) . "%";
@@ -176,6 +181,8 @@ class Review {
             'approved_reviews'     => 0,
             'flagged_reviews'      => 0,
             'rejected_reviews'     => 0,
+            'verified_reviews'     => 0,
+            'photo_reviews'        => 0,
             'average_store_rating' => 5.0
         ];
 
@@ -189,6 +196,8 @@ class Review {
                     SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,
                     SUM(CASE WHEN status = 'flagged' THEN 1 ELSE 0 END) as flagged,
                     SUM(CASE WHEN status = 'rejected' THEN 1 ELSE 0 END) as rejected,
+                    SUM(CASE WHEN order_item_id IS NOT NULL THEN 1 ELSE 0 END) as verified_count,
+                    SUM(CASE WHEN photo_urls IS NOT NULL AND photo_urls != '' AND photo_urls != '[]' THEN 1 ELSE 0 END) as photo_count,
                     AVG(CASE WHEN status = 'approved' THEN rating ELSE NULL END) as avg_rating
                 FROM reviews
             ");
@@ -199,6 +208,8 @@ class Review {
                 $kpis['approved_reviews']     = (int)($row['approved'] ?? 0);
                 $kpis['flagged_reviews']      = (int)($row['flagged'] ?? 0);
                 $kpis['rejected_reviews']     = (int)($row['rejected'] ?? 0);
+                $kpis['verified_reviews']     = (int)($row['verified_count'] ?? 0);
+                $kpis['photo_reviews']        = (int)($row['photo_count'] ?? 0);
                 $kpis['average_store_rating'] = $row['avg_rating'] !== null ? round((float)$row['avg_rating'], 1) : 5.0;
             }
         } catch (Exception $e) {
@@ -206,6 +217,114 @@ class Review {
         }
 
         return $kpis;
+    }
+
+    /**
+     * Retrieve all reviews matching filter criteria for CSV export.
+     */
+    public static function getAllForExport(array $filters = []): array {
+        try {
+            $db = Database::connect();
+            $whereClauses = ["1=1"];
+            $params = [];
+            $types = "";
+
+            // Moderation Status filter
+            if (!empty($filters['status']) && $filters['status'] !== 'all') {
+                $whereClauses[] = "r.status = ?";
+                $params[] = $filters['status'];
+                $types .= "s";
+            }
+
+            // Star Rating filter (1 to 5)
+            if (!empty($filters['rating']) && $filters['rating'] !== 'all' && is_numeric($filters['rating'])) {
+                $whereClauses[] = "r.rating = ?";
+                $params[] = (int)$filters['rating'];
+                $types .= "i";
+            }
+
+            // Verified Buyer filter
+            if (!empty($filters['verified']) && $filters['verified'] === 'verified_only') {
+                $whereClauses[] = "r.order_item_id IS NOT NULL";
+            }
+
+            // Photos filter
+            if (!empty($filters['photos']) && $filters['photos'] === 'with_photos') {
+                $whereClauses[] = "r.photo_urls IS NOT NULL AND r.photo_urls != '' AND r.photo_urls != '[]'";
+            }
+
+            // Search query
+            if (!empty($filters['search'])) {
+                $searchWildcard = "%" . trim($filters['search']) . "%";
+                $whereClauses[] = "(c.name LIKE ? OR c.email LIKE ? OR p.name LIKE ? OR r.title LIKE ? OR r.body LIKE ?)";
+                for ($i = 0; $i < 5; $i++) {
+                    $params[] = $searchWildcard;
+                    $types .= "s";
+                }
+            }
+
+            $whereSql = implode(" AND ", $whereClauses);
+
+            // Sorting
+            $sortSql = "ORDER BY r.created_at DESC, r.id DESC";
+            if (!empty($filters['sort'])) {
+                $sortSql = match ($filters['sort']) {
+                    'newest'      => "ORDER BY r.created_at DESC, r.id DESC",
+                    'oldest'      => "ORDER BY r.created_at ASC, r.id ASC",
+                    'rating_high' => "ORDER BY r.rating DESC, r.created_at DESC",
+                    'rating_low'  => "ORDER BY r.rating ASC, r.created_at DESC",
+                    default       => "ORDER BY r.created_at DESC, r.id DESC"
+                };
+            }
+
+            $selectSql = "
+                SELECT 
+                    r.*,
+                    p.name AS product_name,
+                    p.slug AS product_slug,
+                    c.name AS customer_name,
+                    c.email AS customer_email,
+                    adm.name AS moderator_name
+                FROM reviews r
+                JOIN products p ON r.product_id = p.id
+                JOIN customers c ON r.customer_id = c.id
+                LEFT JOIN admins adm ON r.moderated_by = adm.id
+                WHERE $whereSql
+                $sortSql
+            ";
+
+            $stmt = $db->prepare($selectSql);
+            if (!empty($params)) {
+                $stmt->bind_param($types, ...$params);
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $rows = [];
+            while ($row = $result->fetch_assoc()) {
+                $row['encrypted_id'] = encrypt_id($row['id']);
+                $row['is_verified_buyer'] = !empty($row['order_item_id']);
+
+                $photos = [];
+                if (!empty($row['photo_urls'])) {
+                    $decoded = json_decode($row['photo_urls'], true);
+                    if (is_array($decoded)) {
+                        $photos = $decoded;
+                    } else {
+                        $photos = array_filter(array_map('trim', explode(',', $row['photo_urls'])));
+                    }
+                }
+                $row['photos'] = $photos;
+                $row['photo_count'] = count($photos);
+
+                $rows[] = $row;
+            }
+
+            return $rows;
+        } catch (Exception $e) {
+            error_log("Review::getAllForExport error: " . $e->getMessage());
+            return [];
+        }
     }
 
     /**

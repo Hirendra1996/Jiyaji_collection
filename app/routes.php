@@ -35,6 +35,118 @@ $router->get('admin/logout', 'Admin/AuthController@logout');
 $router->post('admin/logout', 'Admin/AuthController@logout');
 
 // =============================================================================
+// STAFF & OPERATIONS PORTAL AUTHENTICATION (RBAC Partitioned)
+// =============================================================================
+$router->get('portal', 'Portal/PortalAuthController@showLogin');
+$router->get('portal/login', 'Portal/PortalAuthController@showLogin');
+$router->post('portal/login', 'Portal/PortalAuthController@login');
+$router->get('portal/logout', 'Portal/PortalAuthController@logout');
+$router->post('portal/logout', 'Portal/PortalAuthController@logout');
+
+// =============================================================================
+// STAFF & OPERATIONS PORTAL PROTECTED ROUTES
+// =============================================================================
+$router->group(fn() => \App\Middleware\PortalAuthMiddleware::check(), function() use ($router) {
+    $router->get('portal/dashboard', 'Portal/PortalDashboardController@index');
+
+    // =========================================================================
+    // STAFF PORTAL - ORDERS MANAGEMENT (Features & Granular RBAC)
+    // =========================================================================
+    $router->get('portal/orders', 'Portal/PortalOrderController@index');
+    $router->get('portal/orders/export', 'Portal/PortalOrderController@export');
+    $router->get('portal/orders/{id}/invoice', 'Portal/PortalOrderController@invoice');
+    $router->post('portal/orders/{id}/status', 'Portal/PortalOrderController@updateStatus');
+    $router->post('portal/orders/{id}/payment', 'Portal/PortalOrderController@updatePayment');
+    $router->post('portal/orders/{id}/tracking', 'Portal/PortalOrderController@updateTracking');
+    $router->get('portal/orders/{id}', 'Portal/PortalOrderController@show');
+
+    // =========================================================================
+    // STAFF PORTAL - RETURNS & EXCHANGES (RMA Management)
+    // =========================================================================
+    $router->get('portal/returns', 'Portal/PortalReturnController@index');
+    $router->get('portal/returns/export', 'Portal/PortalReturnController@export');
+    $router->get('portal/returns/create', 'Portal/PortalReturnController@create');
+    $router->post('portal/returns/create', 'Portal/PortalReturnController@store');
+    $router->get('portal/returns/{id}', 'Portal/PortalReturnController@show');
+    $router->post('portal/returns/{id}/status', 'Portal/PortalReturnController@updateStatus');
+    $router->post('portal/returns/{id}/tracking', 'Portal/PortalReturnController@updateTracking');
+    $router->post('portal/returns/{id}/refund', 'Portal/PortalReturnController@processRefund');
+
+    // =========================================================================
+    // STAFF PORTAL - SHIPMENTS & AWBs LOGISTICS HUB
+    // =========================================================================
+    $router->get('portal/shipments', 'Portal/PortalShipmentController@index');
+    $router->get('portal/shipments/export', 'Portal/PortalShipmentController@export');
+    $router->post('portal/shipments/create', 'Portal/PortalShipmentController@create');
+    $router->get('portal/shipments/{id}', 'Portal/PortalShipmentController@show');
+    $router->get('portal/shipments/{id}/label', 'Portal/PortalShipmentController@label');
+    $router->get('portal/shipments/{id}/track', 'Portal/PortalShipmentController@trackJson');
+    $router->post('portal/shipments/{id}/milestone', 'Portal/PortalShipmentController@addMilestone');
+
+    // =========================================================================
+    // STAFF PORTAL - PRODUCTS & SKUS CATALOG (Inventory & Merchandising)
+    // =========================================================================
+    $router->get('portal/products', 'Portal/PortalProductController@index');
+    $router->get('portal/products/export', 'Portal/PortalProductController@export');
+    $router->get('portal/products/create', 'Portal/PortalProductController@create');
+    $router->post('portal/products/store', 'Portal/PortalProductController@store');
+    $router->get('portal/products/{id}/edit', 'Portal/PortalProductController@edit');
+    $router->post('portal/products/{id}/update', 'Portal/PortalProductController@update');
+    $router->post('portal/products/{id}/status', 'Portal/PortalProductController@toggleStatus');
+    $router->post('portal/products/{id}/stock', 'Portal/PortalProductController@adjustStock');
+    $router->post('portal/products/{id}/delete', 'Portal/PortalProductController@destroy');
+    $router->get('portal/products/{id}', 'Portal/PortalProductController@show');
+
+    // =========================================================================
+    // STAFF PORTAL - CATEGORIES TAXONOMY (Hierarchy & Merchandising)
+    // =========================================================================
+    $router->get('portal/categories', 'Portal/PortalCategoryController@index');
+    $router->get('portal/categories/export', 'Portal/PortalCategoryController@export');
+    $router->get('portal/categories/create', 'Portal/PortalCategoryController@create');
+    $router->post('portal/categories/store', 'Portal/PortalCategoryController@store');
+    $router->get('portal/categories/{id}/edit', 'Portal/PortalCategoryController@edit');
+    $router->post('portal/categories/{id}/update', 'Portal/PortalCategoryController@update');
+    $router->post('portal/categories/{id}/status', 'Portal/PortalCategoryController@toggleStatus');
+    $router->post('portal/categories/{id}/delete', 'Portal/PortalCategoryController@destroy');
+    $router->get('portal/categories/{id}', 'Portal/PortalCategoryController@show');
+
+    // =========================================================================
+    // STAFF PORTAL - STOCK & REPLENISHMENT HUB
+    // =========================================================================
+    $router->get('portal/stock', 'Portal/PortalStockController@index');
+    $router->get('portal/stock/movements', 'Portal/PortalStockController@movements');
+    $router->get('portal/stock/export', 'Portal/PortalStockController@export');
+    $router->get('portal/stock/export-movements', 'Portal/PortalStockController@exportMovements');
+    $router->post('portal/stock/replenish', 'Portal/PortalStockController@replenish');
+    $router->post('portal/stock/batch-replenish', 'Portal/PortalStockController@batchReplenish');
+
+    // =========================================================================
+    // STAFF PORTAL - CUSTOMER DIRECTORY & SHOPPER PROFILES (CRM)
+    // =========================================================================
+    $router->get('portal/customers', 'Portal/PortalCustomerController@index');
+    $router->get('portal/customers/export', 'Portal/PortalCustomerController@export');
+    $router->get('portal/customers/create', 'Portal/PortalCustomerController@create');
+    $router->post('portal/customers/store', 'Portal/PortalCustomerController@store');
+    $router->get('portal/customers/{id}', 'Portal/PortalCustomerController@show');
+    $router->get('portal/customers/{id}/edit', 'Portal/PortalCustomerController@edit');
+    $router->post('portal/customers/{id}/update', 'Portal/PortalCustomerController@update');
+    $router->post('portal/customers/{id}/status', 'Portal/PortalCustomerController@toggleStatus');
+    $router->post('portal/customers/{id}/address', 'Portal/PortalCustomerController@storeAddress');
+    $router->post('portal/customers/{id}/address/{address_id}/delete', 'Portal/PortalCustomerController@deleteAddress');
+    $router->post('portal/customers/{id}/address/{address_id}/default', 'Portal/PortalCustomerController@setDefaultAddress');
+
+    // =========================================================================
+    // STAFF PORTAL - CUSTOMER REVIEWS & SENTIMENT MODERATION
+    // =========================================================================
+    $router->get('portal/reviews', 'Portal/PortalReviewController@index');
+    $router->get('portal/reviews/export', 'Portal/PortalReviewController@export');
+    $router->post('portal/reviews/bulk', 'Portal/PortalReviewController@bulkModerate');
+    $router->get('portal/reviews/{id}', 'Portal/PortalReviewController@show');
+    $router->post('portal/reviews/{id}/status', 'Portal/PortalReviewController@moderate');
+    $router->post('portal/reviews/{id}/delete', 'Portal/PortalReviewController@destroy');
+});
+
+// =============================================================================
 // PROTECTED ADMIN ROUTES (Authentication Required)
 // =============================================================================
 

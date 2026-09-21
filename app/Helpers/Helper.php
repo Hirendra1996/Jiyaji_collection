@@ -332,3 +332,49 @@ if (!function_exists('store_settings')) {
         return \App\Models\StoreSetting::getFlatValues();
     }
 }
+
+if (!function_exists('auth_staff')) {
+    /**
+     * Retrieve currently authenticated staff member data from session.
+     */
+    function auth_staff(): ?array {
+        if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
+            @session_start();
+        }
+        if (!empty($_SESSION['staff_logged_in']) && !empty($_SESSION['staff_user'])) {
+            return $_SESSION['staff_user'];
+        }
+        return null;
+    }
+}
+
+if (!function_exists('staff_can')) {
+    /**
+     * Determine if currently authenticated staff user has permission for module & action.
+     */
+    function staff_can(string $module, string $action = 'view'): bool {
+        $staff = auth_staff();
+        if (!$staff) {
+            return false;
+        }
+
+        // Super Administrator has unrestricted access to all modules
+        $roleName = $staff['role_name'] ?? '';
+        if ($roleName === 'super_admin') {
+            return true;
+        }
+
+        // Check cached permissions in session first
+        if (isset($_SESSION['staff_permissions']) && is_array($_SESSION['staff_permissions'])) {
+            $key = $module . ':' . $action;
+            return in_array($key, $_SESSION['staff_permissions'], true);
+        }
+
+        // Fallback to database check
+        if (class_exists('App\\Models\\Staff') && !empty($staff['id'])) {
+            return \App\Models\Staff::hasPermission((int)$staff['id'], $module, $action);
+        }
+
+        return false;
+    }
+}
