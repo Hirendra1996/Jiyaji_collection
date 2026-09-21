@@ -2459,4 +2459,484 @@ select.form-input {
     }
 }
 
+/* ==========================================================================
+   STORE SETTINGS & BRAND CONFIGURATION RESPONSIVE SYSTEM
+   ========================================================================== */
+
+.settings-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Compact Settings Page Header */
+.settings-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.settings-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-breadcrumbs {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.settings-breadcrumbs a {
+    color: var(--brand-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.settings-breadcrumbs span.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.settings-page-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.settings-page-title .badge-feature {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(45, 130, 255, 0.1);
+    color: var(--brand-blue);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.settings-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-header-actions .btn-storefront {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+    min-height: 38px;
+}
+
+.settings-header-actions .btn-storefront:hover {
+    border-color: var(--brand-blue);
+    color: var(--brand-blue);
+}
+
+.settings-header-actions .btn-wa-test {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #25D366;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    min-height: 38px;
+    transition: var(--transition);
+}
+
+.settings-header-actions .btn-wa-test:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+/* Compact Executive Metric Strip */
+.settings-metric-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.settings-metric-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    transition: var(--transition);
+    min-height: 58px;
+}
+
+.settings-metric-card:hover {
+    border-color: rgba(45, 130, 255, 0.3);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    transform: translateY(-1px);
+}
+
+.settings-metric-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settings-metric-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.settings-metric-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.settings-metric-val {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.settings-metric-sub {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1px;
+}
+
+.settings-grid-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 20px;
+    align-items: start;
+}
+
+.settings-grid-layout.layout-whatsapp {
+    grid-template-columns: minmax(0, 1fr) 360px;
+}
+
+.settings-form-card {
+    padding: 22px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.settings-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.settings-form-grid .full-col {
+    grid-column: 1 / -1;
+}
+
+/* Tabs Navigation Bar */
+.settings-tabs-wrapper {
+    margin-bottom: 18px;
+    padding: 4px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    position: relative;
+}
+
+.settings-tabs-nav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.settings-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition);
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    min-height: 36px;
+    flex-shrink: 0;
+}
+
+.settings-tab-btn:hover {
+    background: rgba(45, 130, 255, 0.08) !important;
+    color: var(--brand-blue) !important;
+}
+
+.settings-tab-btn.active {
+    color: #fff !important;
+    background: var(--gradient-primary) !important;
+    box-shadow: var(--shadow-glow-blue) !important;
+}
+
+/* Form Action Buttons Bar */
+.settings-action-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 18px;
+    margin-top: 20px;
+}
+
+/* Simulator sticky wrapper */
+.settings-simulator-sticky {
+    position: sticky;
+    top: 80px;
+}
+
+.settings-phone-frame {
+    background: #0F172A;
+    border-radius: 28px;
+    padding: 12px;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+    border: 4px solid #334155;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+/* Master Toggle Banners */
+.settings-toggle-card {
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.settings-toggle-card .switch,
+.settings-toggle-card input[type="checkbox"] {
+    flex-shrink: 0;
+}
+
+/* Asset upload row with fluid shrinking input */
+.settings-asset-upload-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.settings-asset-upload-row .settings-file-input {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
+    max-width: 100%;
+    font-size: 0.78rem;
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-secondary);
+    color: var(--text-primary);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.settings-asset-upload-row .settings-upload-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    min-height: 34px;
+    transition: var(--transition);
+}
+
+.settings-asset-upload-row .settings-upload-btn.btn-upload-blue {
+    background: var(--brand-blue);
+    color: #fff;
+}
+
+.settings-asset-upload-row .settings-upload-btn.btn-upload-purple {
+    background: var(--brand-purple);
+    color: #fff;
+}
+
+.settings-asset-upload-row .settings-upload-btn.btn-upload-dark {
+    background: #0F172A;
+    color: #fff;
+}
+
+.settings-asset-upload-row .settings-upload-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .settings-metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1080px) {
+    .settings-grid-layout,
+    .settings-grid-layout.layout-whatsapp {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .settings-simulator-sticky {
+        position: static !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .settings-form-card {
+        padding: 20px 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-metric-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .settings-header-actions {
+        width: 100%;
+    }
+
+    .settings-header-actions .btn-storefront,
+    .settings-header-actions .btn-wa-test {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .settings-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .settings-form-card {
+        padding: 18px 14px !important;
+    }
+
+    .settings-page-title {
+        font-size: 1.2rem !important;
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    .settings-action-bar {
+        justify-content: stretch;
+    }
+
+    .settings-action-bar button,
+    .settings-action-bar .btn-primary {
+        width: 100% !important;
+        justify-content: center;
+        padding: 14px 20px !important;
+    }
+
+    .settings-toggle-card {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 14px;
+    }
+
+    .settings-toggle-card .toggle-switch-wrapper {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-asset-upload-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .settings-asset-upload-row .settings-upload-btn {
+        width: 100%;
+        padding: 9px !important;
+    }
+
+    .settings-tab-btn {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+    }
+
+    .settings-tab-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .settings-phone-frame {
+        max-width: 100%;
+        padding: 8px;
+        border-radius: 20px;
+    }
+}
+
+
 

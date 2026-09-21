@@ -300,12 +300,7 @@ $isEditing = !empty($editingPage);
                                                 <div style="display:inline-flex; align-items:center; gap:6px; justify-content:flex-end;">
                                                     <!-- Live Preview Modal Button -->
                                                     <button type="button" class="btn-icon" title="Quick Preview"
-                                                            onclick='openPreviewModal(<?= json_encode([
-                                                                'title'   => $p['title'],
-                                                                'excerpt' => $p['excerpt'],
-                                                                'content' => $p['content'],
-                                                                'slug'    => $p['slug']
-                                                            ]) ?>)'
+                                                            onclick="openPreviewModal(<?= (int)$p['id'] ?>)"
                                                             style="width:32px; height:32px; display:inline-flex; align-items:center; justify-content:center; border-radius:var(--radius-md); border:1px solid var(--border-color); background:var(--bg-surface); color:var(--text-primary); cursor:pointer; transition:var(--transition);"
                                                             onmouseover="this.style.borderColor='var(--brand-blue)'; this.style.color='var(--brand-blue)'"
                                                             onmouseout="this.style.borderColor='var(--border-color)'; this.style.color='var(--text-primary)'">
@@ -773,9 +768,30 @@ function formatContent(tag) {
 }
 
 // Live Preview Modal
-function openPreviewModal(page) {
+<?php
+$pagesCatalog = [];
+if (!empty($pagesList)) {
+    foreach ($pagesList as $pItem) {
+        $pagesCatalog[$pItem['id']] = [
+            'id'      => (int)$pItem['id'],
+            'title'   => $pItem['title'],
+            'excerpt' => $pItem['excerpt'] ?? '',
+            'content' => $pItem['content'] ?? '',
+            'slug'    => $pItem['slug'] ?? ''
+        ];
+    }
+}
+?>
+window.pagesCatalog = <?= json_encode($pagesCatalog, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
+
+function openPreviewModal(pageOrId) {
+    let page = pageOrId;
+    if (typeof pageOrId === 'number' || typeof pageOrId === 'string') {
+        page = (window.pagesCatalog && window.pagesCatalog[pageOrId]) ? window.pagesCatalog[pageOrId] : null;
+    }
+    if (!page) return;
     document.getElementById('previewModalTitle').innerText = page.title || 'Untitled Page';
-    document.getElementById('previewModalSlug').innerText = '/' + page.slug;
+    document.getElementById('previewModalSlug').innerText = '/' + (page.slug || '');
     document.getElementById('previewContentTitle').innerText = page.title || 'Untitled Page';
     document.getElementById('previewContentExcerpt').innerText = page.excerpt || '';
     document.getElementById('previewContentBody').innerHTML = page.content || '<p>No content written yet.</p>';

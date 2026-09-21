@@ -15,151 +15,109 @@ $groupMeta = $catalog[$activeTab] ?? [];
         <?php include __DIR__ . '/../layouts/topbar.php'; ?>
 
         <main class="dashboard-content">
+            <div class="settings-container">
 
             <!-- ============================================================ -->
-            <!-- 1. PAGE HEADER & BREADCRUMBS                                 -->
+            <!-- 1. COMPACT PAGE HEADER & BREADCRUMBS                         -->
             <!-- ============================================================ -->
-            <div class="welcome-banner" style="margin-bottom:24px;">
-                <div>
-                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
-                        <a href="<?= url('admin/dashboard') ?>" style="color:var(--brand-blue); text-decoration:none; font-weight:500;">Dashboard</a>
+            <div class="settings-header-bar">
+                <div class="settings-header-left">
+                    <div class="settings-breadcrumbs">
+                        <a href="<?= url('admin/dashboard') ?>">Dashboard</a>
                         <span style="opacity:.4;">/</span>
                         <span>Settings</span>
                         <span style="opacity:.4;">/</span>
-                        <span style="color:var(--text-primary); font-weight:600;">Store Configuration</span>
+                        <span class="active">Store Configuration</span>
                     </div>
-                    <h1 class="welcome-title" style="display:flex; align-items:center; gap:12px;">
-                        Store Settings &amp; Brand Control
-                        <span style="font-size:0.75rem; font-weight:700; background:rgba(45, 130, 255, 0.1); color:var(--brand-blue); padding:4px 10px; border-radius:999px; letter-spacing:0.5px; text-transform:uppercase;">
-                            Feature 30 &amp; Meta Pixel
-                        </span>
+                    <h1 class="settings-page-title">
+                        <span>Store Settings &amp; Brand Control</span>
+                        <span class="badge-feature">Feature 30 &amp; Meta Pixel</span>
                     </h1>
-                    <p class="welcome-subtitle">
-                        Orchestrate brand identity, official contact channels, WhatsApp floating concierge, regional currencies, Meta ad pixels, and atelier operational modes.
-                    </p>
                 </div>
 
-                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                    <!-- Visit Storefront Button -->
-                    <a href="<?= url('home') ?>" target="_blank"
-                       style="display:inline-flex; align-items:center; gap:8px; background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-color); font-size:0.88rem; font-weight:600; padding:9px 16px; border-radius:var(--radius-md); text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,0.05); transition:var(--transition);"
-                       onmouseover="this.style.borderColor='var(--brand-blue)'; this.style.color='var(--brand-blue)'"
-                       onmouseout="this.style.borderColor='var(--border-color)'; this.style.color='var(--text-primary)'"
-                       title="Open Public Storefront in New Tab">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                <div class="settings-header-actions">
+                    <a href="<?= url('home') ?>" target="_blank" class="btn-storefront" title="Open Public Storefront in New Tab">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                         <span>View Storefront</span>
                     </a>
 
-                    <!-- Test WhatsApp Direct Link -->
-                    <button type="button" onclick="testWhatsAppConcierge()"
-                            style="display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-size:0.88rem; font-weight:700; padding:10px 18px; border-radius:var(--radius-md); border:none; cursor:pointer; box-shadow:0 4px 12px rgba(37, 211, 102, 0.25); transition:var(--transition);"
-                            onmouseover="this.style.opacity='0.92'; this.style.transform='translateY(-1px)'"
-                            onmouseout="this.style.opacity='1'; this.style.transform=''"
-                            title="Test WhatsApp concierge link with pre-filled message">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <button type="button" onclick="testWhatsAppConcierge()" class="btn-wa-test" title="Test WhatsApp Concierge">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                         </svg>
-                        <span>Test WhatsApp Concierge</span>
+                        <span>Test WhatsApp</span>
                     </button>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- 2. EXECUTIVE KPIS SUMMARY CARDS                             -->
+            <!-- 2. SLEEK EXECUTIVE METRIC STRIP                              -->
             <!-- ============================================================ -->
-            <div class="catalog-kpi-grid" style="margin-bottom:24px;">
-                <!-- KPI 1: Brand Completeness -->
-                <div class="kpi-card" style="position:relative; overflow:hidden;">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="kpi-label">Brand Profile Completeness</div>
-                            <div class="kpi-val" style="color:var(--brand-purple); font-size:1.75rem; font-weight:800;">
-                                <?= $kpis['profile_completeness'] ?>%
-                            </div>
-                        </div>
-                        <div class="kpi-icon" style="background:rgba(140, 48, 245, 0.1); color:var(--brand-purple);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        </div>
+            <div class="settings-metric-strip">
+                <!-- Metric 1: Brand Profile Completeness -->
+                <div class="settings-metric-card">
+                    <div class="settings-metric-icon" style="background:rgba(140, 48, 245, 0.1); color:var(--brand-purple);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
-                    <div style="margin-top:12px; background:var(--border-color); height:6px; border-radius:999px; overflow:hidden;">
-                        <div style="background:var(--gradient-purple); height:100%; width:<?= $kpis['profile_completeness'] ?>%; border-radius:999px; transition:width 0.6s ease;"></div>
-                    </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">
-                        <?= !empty($flat['store_gstin']) ? 'Verified GSTIN: ' . htmlspecialchars($flat['store_gstin']) : 'GSTIN Pending' ?>
+                    <div class="settings-metric-info">
+                        <div class="settings-metric-label">Brand Profile</div>
+                        <div class="settings-metric-val" style="color:var(--brand-purple);">
+                            <?= $kpis['profile_completeness'] ?>% Complete
+                        </div>
+                        <div class="settings-metric-sub">
+                            <?= !empty($flat['store_gstin']) ? 'GSTIN: ' . htmlspecialchars($flat['store_gstin']) : 'GSTIN Pending' ?>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KPI 2: WhatsApp Floating Widget -->
-                <div class="kpi-card">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="kpi-label">WhatsApp Concierge</div>
-                            <div class="kpi-val" style="display:flex; align-items:center; gap:8px; font-size:1.4rem; font-weight:800; color:<?= $kpis['whatsapp_enabled'] ? '#059669' : '#94A3B8' ?>;">
-                                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:<?= $kpis['whatsapp_enabled'] ? '#10B981' : '#94A3B8' ?>; <?= $kpis['whatsapp_enabled'] ? 'box-shadow:0 0 0 3px rgba(16,185,129,0.25);' : '' ?>"></span>
-                                <?= $kpis['whatsapp_enabled'] ? 'Active &amp; Floating' : 'Disabled' ?>
-                            </div>
-                        </div>
-                        <div class="kpi-icon" style="background:rgba(37, 211, 102, 0.12); color:#25D366;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                            </svg>
-                        </div>
+                <!-- Metric 2: WhatsApp Concierge -->
+                <div class="settings-metric-card">
+                    <div class="settings-metric-icon" style="background:rgba(37, 211, 102, 0.12); color:#25D366;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
                     </div>
-                    <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:12px; font-weight:600;">
-                        Target: <?= htmlspecialchars($kpis['whatsapp_number'] ?: '+91 98765 43210') ?>
-                    </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
-                        Position: <?= htmlspecialchars($flat['whatsapp_position'] ?? 'bottom-right') ?> &bull; Greeting Bubble: <?= !empty($flat['whatsapp_popup_enabled']) ? 'ON' : 'OFF' ?>
+                    <div class="settings-metric-info">
+                        <div class="settings-metric-label">WhatsApp Concierge</div>
+                        <div class="settings-metric-val" style="color:<?= $kpis['whatsapp_enabled'] ? '#059669' : '#94A3B8' ?>;">
+                            <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:currentColor;"></span>
+                            <?= $kpis['whatsapp_enabled'] ? 'Active &bull; Float' : 'Disabled' ?>
+                        </div>
+                        <div class="settings-metric-sub">
+                            <?= htmlspecialchars($kpis['whatsapp_number'] ?: '+91 98765 43210') ?>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KPI 3: Tracking & Analytics Pixels -->
-                <div class="kpi-card">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="kpi-label">Tracking Pixels &amp; Analytics</div>
-                            <div class="kpi-val" style="color:var(--brand-blue); font-size:1.75rem; font-weight:800;">
-                                <?= $kpis['active_pixels_count'] ?> / 3 Active
-                            </div>
-                        </div>
-                        <div class="kpi-icon" style="background:rgba(45, 130, 255, 0.1); color:var(--brand-blue);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        </div>
+                <!-- Metric 3: Tracking Pixels -->
+                <div class="settings-metric-card">
+                    <div class="settings-metric-icon" style="background:rgba(45, 130, 255, 0.1); color:var(--brand-blue);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
-                    <div style="display:flex; gap:6px; margin-top:12px; flex-wrap:wrap;">
-                        <span style="font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; background:<?= $kpis['meta_pixel_active'] ? 'rgba(16,185,129,0.1)' : 'rgba(148,163,184,0.15)' ?>; color:<?= $kpis['meta_pixel_active'] ? '#059669' : '#64748B' ?>;">
-                            Meta Pixel <?= $kpis['meta_pixel_active'] ? '✓' : '—' ?>
-                        </span>
-                        <span style="font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; background:<?= $kpis['ga4_active'] ? 'rgba(16,185,129,0.1)' : 'rgba(148,163,184,0.15)' ?>; color:<?= $kpis['ga4_active'] ? '#059669' : '#64748B' ?>;">
-                            GA4 <?= $kpis['ga4_active'] ? '✓' : '—' ?>
-                        </span>
-                        <span style="font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; background:<?= $kpis['gtm_active'] ? 'rgba(16,185,129,0.1)' : 'rgba(148,163,184,0.15)' ?>; color:<?= $kpis['gtm_active'] ? '#059669' : '#64748B' ?>;">
-                            GTM <?= $kpis['gtm_active'] ? '✓' : '—' ?>
-                        </span>
-                    </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">
-                        Retargeting and conversion telemetry active
+                    <div class="settings-metric-info">
+                        <div class="settings-metric-label">Tracking Pixels</div>
+                        <div class="settings-metric-val" style="color:var(--brand-blue);">
+                            <?= $kpis['active_pixels_count'] ?> / 3 Active
+                        </div>
+                        <div class="settings-metric-sub">
+                            Meta <?= $kpis['meta_pixel_active'] ? '✓' : '—' ?> &bull; GA4 <?= $kpis['ga4_active'] ? '✓' : '—' ?> &bull; GTM <?= $kpis['gtm_active'] ? '✓' : '—' ?>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KPI 4: Store Operational State -->
-                <div class="kpi-card">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="kpi-label">Store Operational State</div>
-                            <div class="kpi-val" style="font-size:1.4rem; font-weight:800; color:<?= $kpis['is_maintenance'] ? '#d97706' : ($kpis['accepting_orders'] ? '#059669' : '#dc2626') ?>;">
-                                <?= $kpis['is_maintenance'] ? 'Maintenance Mode' : ($kpis['accepting_orders'] ? 'Online &amp; Taking Orders' : 'Orders Paused') ?>
-                            </div>
-                        </div>
-                        <div class="kpi-icon" style="background:<?= $kpis['is_maintenance'] ? 'rgba(245, 158, 11, 0.1)' : ($kpis['accepting_orders'] ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)') ?>; color:<?= $kpis['is_maintenance'] ? '#d97706' : ($kpis['accepting_orders'] ? '#059669' : '#dc2626') ?>;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
+                <!-- Metric 4: Store Status -->
+                <div class="settings-metric-card">
+                    <div class="settings-metric-icon" style="background:<?= $kpis['is_maintenance'] ? 'rgba(245, 158, 11, 0.1)' : ($kpis['accepting_orders'] ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)') ?>; color:<?= $kpis['is_maintenance'] ? '#d97706' : ($kpis['accepting_orders'] ? '#059669' : '#dc2626') ?>;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:12px;">
-                        Currency: <strong><?= htmlspecialchars($flat['currency_code'] ?? 'INR') ?> (<?= htmlspecialchars($flat['currency_symbol'] ?? '₹') ?>)</strong> &bull; TZ: <?= htmlspecialchars($flat['timezone'] ?? 'Asia/Kolkata') ?>
-                    </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
-                        Last updated: <?= htmlspecialchars($kpis['latest_update']) ?>
+                    <div class="settings-metric-info">
+                        <div class="settings-metric-label">Store Operational</div>
+                        <div class="settings-metric-val" style="color:<?= $kpis['is_maintenance'] ? '#d97706' : ($kpis['accepting_orders'] ? '#059669' : '#dc2626') ?>;">
+                            <?= $kpis['is_maintenance'] ? 'Maintenance' : ($kpis['accepting_orders'] ? 'Online &amp; Taking Orders' : 'Orders Paused') ?>
+                        </div>
+                        <div class="settings-metric-sub">
+                            <?= htmlspecialchars($flat['currency_code'] ?? 'INR') ?> (<?= htmlspecialchars($flat['currency_symbol'] ?? '₹') ?>) &bull; <?= htmlspecialchars($flat['timezone'] ?? 'Asia/Kolkata') ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,26 +125,25 @@ $groupMeta = $catalog[$activeTab] ?? [];
             <!-- ============================================================ -->
             <!-- 3. CONFIGURATION TABS NAVIGATION                             -->
             <!-- ============================================================ -->
-            <div class="admin-card" style="margin-bottom:24px; padding:6px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-                <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:2px;" class="custom-scrollbar">
+            <div class="settings-tabs-wrapper">
+                <div class="settings-tabs-nav">
                     <?php
                     $tabsCatalog = [
-                        'brand'        => ['label' => 'Brand & Identity',        'icon' => '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'],
-                        'contact'      => ['label' => 'Contact & Concierge',     'icon' => '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>'],
-                        'whatsapp'     => ['label' => 'WhatsApp Concierge',      'icon' => '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>'],
-                        'localization' => ['label' => 'Localization & Currency', 'icon' => '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'],
-                        'marketing'    => ['label' => 'Marketing & Pixels',      'icon' => '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'],
-                        'social'       => ['label' => 'Social Channels',         'icon' => '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>'],
-                        'operations'   => ['label' => 'Store Operations',        'icon' => '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>'],
+                        'brand'        => ['label' => 'Brand Profile',     'icon' => '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'],
+                        'contact'      => ['label' => 'Contact & HQ',      'icon' => '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>'],
+                        'whatsapp'     => ['label' => 'WhatsApp Float',    'icon' => '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>'],
+                        'localization' => ['label' => 'Localization',      'icon' => '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'],
+                        'marketing'    => ['label' => 'Pixels & Ads',      'icon' => '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'],
+                        'social'       => ['label' => 'Social Channels',   'icon' => '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>'],
+                        'operations'   => ['label' => 'Store Operations',  'icon' => '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>'],
                     ];
 
                     foreach ($tabsCatalog as $tabKey => $tabInfo):
                         $isCurrent = ($activeTab === $tabKey);
                     ?>
                         <a href="<?= url('admin/settings?tab=' . $tabKey) ?>"
-                           class="settings-tab-btn <?= $isCurrent ? 'active' : '' ?>"
-                           style="display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:var(--radius-md); font-size:0.88rem; font-weight:600; text-decoration:none; white-space:nowrap; transition:var(--transition); color:<?= $isCurrent ? '#fff' : 'var(--text-secondary)' ?>; background:<?= $isCurrent ? 'var(--gradient-primary)' : 'transparent' ?>; box-shadow:<?= $isCurrent ? 'var(--shadow-glow-blue)' : 'none' ?>;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                           class="settings-tab-btn <?= $isCurrent ? 'active' : '' ?>">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <?= $tabInfo['icon'] ?>
                             </svg>
                             <span><?= $tabInfo['label'] ?></span>
@@ -201,9 +158,9 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 1: BRAND & IDENTITY -->
             <?php if ($activeTab === 'brand'): ?>
-                <div class="settings-grid-layout" style="display:grid; grid-template-columns:2fr 1fr; gap:24px; align-items:start;">
+                <div class="settings-grid-layout">
                     <!-- Left: Core Brand Settings Form -->
-                    <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                    <div class="settings-form-card">
                         <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                             <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                                 <span style="color:var(--brand-purple);">👑</span> Brand Identity &amp; Corporate Profile
@@ -217,8 +174,8 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             <?= csrf_field() ?>
                             <input type="hidden" name="_tab" value="brand">
 
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
-                                <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="settings-form-grid">
+                                <div class="form-group full-col">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                         Store / Brand Name <span style="color:var(--status-danger);">*</span>
                                     </label>
@@ -229,7 +186,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                     <small style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:4px;">Appears in browser title tags, automated customer emails, order invoices, and packaging receipts.</small>
                                 </div>
 
-                                <div class="form-group" style="grid-column:1 / -1;">
+                                <div class="form-group full-col">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                         Brand Tagline / Slogan
                                     </label>
@@ -239,7 +196,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                            placeholder="e.g. Timeless Indian Heritage & Bespoke Bridal Couture">
                                 </div>
 
-                                <div class="form-group" style="grid-column:1 / -1;">
+                                <div class="form-group full-col">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                         Brand Bio &amp; Default SEO Meta Description
                                     </label>
@@ -248,7 +205,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                               placeholder="Describe your couture collection..."><?= htmlspecialchars($flat['store_description'] ?? '') ?></textarea>
                                 </div>
 
-                                <div class="form-group" style="grid-column:1 / -1;">
+                                <div class="form-group full-col">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                         Registered Legal Entity Name
                                     </label>
@@ -271,7 +228,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                                 <div class="form-group">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
-                                        Corporate PAN (Permanent Account Number)
+                                        Corporate PAN
                                     </label>
                                     <input type="text" name="store_pan" class="form-input" maxlength="10"
                                            value="<?= htmlspecialchars($flat['store_pan'] ?? '') ?>"
@@ -279,7 +236,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                            placeholder="e.g. AAACJ1234K">
                                 </div>
 
-                                <div class="form-group" style="grid-column:1 / -1;">
+                                <div class="form-group full-col">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                         Corporate CIN (Company Identification Number)
                                     </label>
@@ -290,38 +247,37 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 </div>
                             </div>
 
-                            <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px; margin-top:24px;">
+                            <div class="settings-action-bar">
                                 <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Save Brand Identity
+                                    <span>Save Brand Identity</span>
                                 </button>
                             </div>
                         </form>
                     </div>
 
                     <!-- Right: Brand Logos & Favicon Asset Uploader -->
-                    <div style="display:flex; flex-direction:column; gap:24px;">
+                    <div style="display:flex; flex-direction:column; gap:20px;">
                         <!-- Card: Primary Light Logo -->
-                        <div class="admin-card" style="padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-                            <h3 style="font-size:1rem; font-weight:800; color:var(--text-primary); margin-bottom:6px;">
+                        <div class="settings-form-card" style="padding:20px;">
+                            <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-primary); margin-bottom:4px;">
                                 Store Logo (Light Theme)
                             </h3>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
+                            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:14px;">
                                 Displayed on light headers, white invoices, and packing slips.
                             </p>
 
-                            <div style="background:#F8FAFC; border:2px dashed var(--border-color); border-radius:var(--radius-md); padding:20px; text-align:center; margin-bottom:14px; min-height:90px; display:flex; align-items:center; justify-content:center;">
+                            <div style="background:#F8FAFC; border:2px dashed var(--border-color); border-radius:var(--radius-md); padding:16px; text-align:center; margin-bottom:12px; min-height:80px; display:flex; align-items:center; justify-content:center;">
                                 <?php $logoLightUrl = !empty($flat['store_logo_url']) ? image_url($flat['store_logo_url']) : asset('images/store/logo.svg'); ?>
-                                <img src="<?= $logoLightUrl ?>" alt="Store Logo Light" id="previewLogoLight" style="max-height:60px; max-width:100%; object-fit:contain;">
+                                <img src="<?= $logoLightUrl ?>" alt="Store Logo Light" id="previewLogoLight" style="max-height:55px; max-width:100%; object-fit:contain;">
                             </div>
 
                             <form method="POST" action="<?= url('admin/settings/upload-asset') ?>" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="asset_type" value="logo">
-                                <div style="display:flex; gap:8px;">
-                                    <input type="file" name="asset_file" accept=".png,.jpg,.jpeg,.svg,.webp" required
-                                           style="font-size:0.8rem; width:100%; padding:6px; border:1px solid var(--border-color); border-radius:var(--radius-sm);">
-                                    <button type="submit" style="background:var(--brand-blue); color:#fff; border:none; padding:8px 14px; border-radius:var(--radius-sm); font-size:0.8rem; font-weight:700; cursor:pointer; white-space:nowrap;">
+                                <div class="settings-asset-upload-row">
+                                    <input type="file" name="asset_file" accept=".png,.jpg,.jpeg,.svg,.webp" required class="settings-file-input">
+                                    <button type="submit" class="settings-upload-btn btn-upload-blue">
                                         Upload
                                     </button>
                                 </div>
@@ -329,26 +285,25 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         </div>
 
                         <!-- Card: Dark Mode Logo -->
-                        <div class="admin-card" style="padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-                            <h3 style="font-size:1rem; font-weight:800; color:var(--text-primary); margin-bottom:6px;">
+                        <div class="settings-form-card" style="padding:20px;">
+                            <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-primary); margin-bottom:4px;">
                                 Dark Mode Logo (Inverted)
                             </h3>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
+                            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:14px;">
                                 Displayed on dark navigation bars and deep midnight banners.
                             </p>
 
-                            <div style="background:#0F172A; border:2px dashed #334155; border-radius:var(--radius-md); padding:20px; text-align:center; margin-bottom:14px; min-height:90px; display:flex; align-items:center; justify-content:center;">
+                            <div style="background:#0F172A; border:2px dashed #334155; border-radius:var(--radius-md); padding:16px; text-align:center; margin-bottom:12px; min-height:80px; display:flex; align-items:center; justify-content:center;">
                                 <?php $logoDarkUrl = !empty($flat['store_logo_dark_url']) ? image_url($flat['store_logo_dark_url']) : asset('images/store/logo-dark.svg'); ?>
-                                <img src="<?= $logoDarkUrl ?>" alt="Store Logo Dark" id="previewLogoDark" style="max-height:60px; max-width:100%; object-fit:contain;">
+                                <img src="<?= $logoDarkUrl ?>" alt="Store Logo Dark" id="previewLogoDark" style="max-height:55px; max-width:100%; object-fit:contain;">
                             </div>
 
                             <form method="POST" action="<?= url('admin/settings/upload-asset') ?>" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="asset_type" value="logo_dark">
-                                <div style="display:flex; gap:8px;">
-                                    <input type="file" name="asset_file" accept=".png,.jpg,.jpeg,.svg,.webp" required
-                                           style="font-size:0.8rem; width:100%; padding:6px; border:1px solid var(--border-color); border-radius:var(--radius-sm);">
-                                    <button type="submit" style="background:var(--brand-purple); color:#fff; border:none; padding:8px 14px; border-radius:var(--radius-sm); font-size:0.8rem; font-weight:700; cursor:pointer; white-space:nowrap;">
+                                <div class="settings-asset-upload-row">
+                                    <input type="file" name="asset_file" accept=".png,.jpg,.jpeg,.svg,.webp" required class="settings-file-input">
+                                    <button type="submit" class="settings-upload-btn btn-upload-purple">
                                         Upload
                                     </button>
                                 </div>
@@ -356,17 +311,17 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         </div>
 
                         <!-- Card: Browser Favicon -->
-                        <div class="admin-card" style="padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-                            <h3 style="font-size:1rem; font-weight:800; color:var(--text-primary); margin-bottom:6px;">
+                        <div class="settings-form-card" style="padding:20px;">
+                            <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-primary); margin-bottom:4px;">
                                 Browser Favicon (.ico / .svg / .png)
                             </h3>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
+                            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:14px;">
                                 Browser tab icon and mobile bookmark badge.
                             </p>
 
-                            <div style="display:flex; align-items:center; gap:16px; background:#F8FAFC; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:14px; margin-bottom:14px;">
+                            <div style="display:flex; align-items:center; gap:16px; background:#F8FAFC; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; margin-bottom:12px;">
                                 <?php $favUrl = !empty($flat['store_favicon_url']) ? image_url($flat['store_favicon_url']) : asset('images/store/favicon.svg'); ?>
-                                <img src="<?= $favUrl ?>" alt="Favicon Preview" id="previewFavicon" style="width:40px; height:40px; border-radius:8px; object-fit:contain; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                                <img src="<?= $favUrl ?>" alt="Favicon Preview" id="previewFavicon" style="width:38px; height:38px; border-radius:8px; object-fit:contain; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
                                 <div style="font-size:0.75rem; color:var(--text-secondary);">
                                     32x32px or 64x64px square icon
                                 </div>
@@ -375,10 +330,9 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             <form method="POST" action="<?= url('admin/settings/upload-asset') ?>" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="asset_type" value="favicon">
-                                <div style="display:flex; gap:8px;">
-                                    <input type="file" name="asset_file" accept=".ico,.png,.svg" required
-                                           style="font-size:0.8rem; width:100%; padding:6px; border:1px solid var(--border-color); border-radius:var(--radius-sm);">
-                                    <button type="submit" style="background:#0F172A; color:#fff; border:none; padding:8px 14px; border-radius:var(--radius-sm); font-size:0.8rem; font-weight:700; cursor:pointer; white-space:nowrap;">
+                                <div class="settings-asset-upload-row">
+                                    <input type="file" name="asset_file" accept=".ico,.png,.svg" required class="settings-file-input">
+                                    <button type="submit" class="settings-upload-btn btn-upload-dark">
                                         Upload
                                     </button>
                                 </div>
@@ -390,7 +344,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 2: CONTACT & CONCIERGE -->
             <?php if ($activeTab === 'contact'): ?>
-                <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); max-width:960px;">
+                <div class="settings-form-card" style="max-width:960px;">
                     <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                         <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                             <span style="color:var(--brand-blue);">📞</span> Customer Care &amp; Concierge Coordinates
@@ -404,7 +358,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         <?= csrf_field() ?>
                         <input type="hidden" name="_tab" value="contact">
 
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                        <div class="settings-form-grid">
                             <div class="form-group">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Primary Concierge Email <span style="color:var(--status-danger);">*</span>
@@ -445,7 +399,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                        placeholder="1800 123 4567">
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Atelier Headquarters Address Line 1
                                 </label>
@@ -455,7 +409,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                        placeholder="Building, Plot, Street">
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Address Line 2 / Landmark
                                 </label>
@@ -505,7 +459,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                        placeholder="India">
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Stylist &amp; Concierge Operating Hours
                                 </label>
@@ -516,10 +470,10 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px; margin-top:24px;">
+                        <div class="settings-action-bar">
                             <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                Save Contact Coordinates
+                                <span>Save Contact Coordinates</span>
                             </button>
                         </div>
                     </form>
@@ -528,11 +482,11 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 3: WHATSAPP CONCIERGE WIDGET (Feature 30 & Live Simulator) -->
             <?php if ($activeTab === 'whatsapp'): ?>
-                <div class="settings-grid-layout" style="display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:start;">
+                <div class="settings-grid-layout layout-whatsapp">
                     <!-- Left: Configuration Form -->
-                    <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                    <div class="settings-form-card">
                         <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
                                 <div>
                                     <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                                         <span style="color:#25D366;">💬</span> WhatsApp Floating Concierge
@@ -548,7 +502,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                     <input type="hidden" name="key" value="whatsapp_enabled">
                                     <input type="hidden" name="_tab" value="whatsapp">
                                     <button type="submit"
-                                            style="display:inline-flex; align-items:center; gap:6px; border:none; padding:6px 14px; border-radius:999px; font-size:0.8rem; font-weight:700; cursor:pointer; transition:var(--transition); background:<?= !empty($flat['whatsapp_enabled']) ? 'rgba(16, 185, 129, 0.15)' : 'rgba(148, 163, 184, 0.2)' ?>; color:<?= !empty($flat['whatsapp_enabled']) ? '#059669' : '#64748B' ?>;">
+                                            style="display:inline-flex; align-items:center; gap:6px; border:none; padding:6px 14px; border-radius:999px; font-size:0.8rem; font-weight:700; cursor:pointer; transition:var(--transition); background:<?= !empty($flat['whatsapp_enabled']) ? 'rgba(16, 185, 129, 0.15)' : 'rgba(148, 163, 184, 0.2)' ?>; color:<?= !empty($flat['whatsapp_enabled']) ? '#059669' : '#64748B' ?>; min-height:32px;">
                                         <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
                                         <?= !empty($flat['whatsapp_enabled']) ? 'Active &bull; Click to Disable' : 'Inactive &bull; Click to Enable' ?>
                                     </button>
@@ -561,17 +515,19 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             <input type="hidden" name="_tab" value="whatsapp">
 
                             <!-- Master Switch Checkbox -->
-                            <div style="background:rgba(37, 211, 102, 0.06); border:1px solid rgba(37, 211, 102, 0.25); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between;">
+                            <div class="settings-toggle-card" style="background:rgba(37, 211, 102, 0.06); border:1px solid rgba(37, 211, 102, 0.25); margin-bottom:20px;">
                                 <div>
                                     <div style="font-weight:700; font-size:0.95rem; color:#065f46;">Enable WhatsApp Floating Concierge Widget</div>
                                     <div style="font-size:0.8rem; color:#047857; margin-top:2px;">Renders floating WhatsApp action button on all customer-facing store pages.</div>
                                 </div>
-                                <label class="switch" style="position:relative; display:inline-block; width:52px; height:28px;">
-                                    <input type="checkbox" name="whatsapp_enabled" value="1" <?= !empty($flat['whatsapp_enabled']) ? 'checked' : '' ?> onchange="updateSimulator();" style="opacity:0; width:0; height:0;">
-                                    <span class="slider round" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:<?= !empty($flat['whatsapp_enabled']) ? '#10B981' : '#cbd5e1' ?>; transition:.3s; border-radius:34px;">
-                                        <span style="position:absolute; content:''; height:22px; width:22px; left:<?= !empty($flat['whatsapp_enabled']) ? '27px' : '3px' ?>; bottom:3px; background-color:white; transition:.3s; border-radius:50%;"></span>
-                                    </span>
-                                </label>
+                                <div class="toggle-switch-wrapper">
+                                    <label class="switch" style="position:relative; display:inline-block; width:52px; height:28px;">
+                                        <input type="checkbox" name="whatsapp_enabled" value="1" <?= !empty($flat['whatsapp_enabled']) ? 'checked' : '' ?> onchange="updateSimulator();" style="opacity:0; width:0; height:0;">
+                                        <span class="slider round" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:<?= !empty($flat['whatsapp_enabled']) ? '#10B981' : '#cbd5e1' ?>; transition:.3s; border-radius:34px;">
+                                            <span style="position:absolute; content:''; height:22px; width:22px; left:<?= !empty($flat['whatsapp_enabled']) ? '27px' : '3px' ?>; bottom:3px; background-color:white; transition:.3s; border-radius:50%;"></span>
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
 
                             <!-- Phone Number -->
@@ -604,7 +560,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 <small style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:4px;">This message automatically populates the customer's WhatsApp chat when they tap the button.</small>
                             </div>
 
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+                            <div class="settings-form-grid" style="margin-bottom:20px;">
                                 <!-- Position -->
                                 <div class="form-group">
                                     <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
@@ -632,7 +588,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                             <!-- Greeting Bubble Settings -->
                             <div style="border:1px solid var(--border-color); border-radius:var(--radius-md); padding:18px; margin-bottom:20px; background:var(--bg-page);">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; gap:12px;">
                                     <div>
                                         <div style="font-weight:700; font-size:0.9rem; color:var(--text-primary);">Floating Callout Greeting Bubble</div>
                                         <div style="font-size:0.75rem; color:var(--text-muted);">Appears automatically beside the button after a short delay.</div>
@@ -640,10 +596,10 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                     <input type="checkbox" name="whatsapp_popup_enabled" id="inputWhatsappBubbleEnabled" value="1"
                                            <?= !empty($flat['whatsapp_popup_enabled']) ? 'checked' : '' ?>
                                            onchange="updateSimulator();"
-                                           style="width:18px; height:18px; cursor:pointer;">
+                                           style="width:20px; height:20px; cursor:pointer; flex-shrink:0;">
                                 </div>
 
-                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                                <div class="settings-form-grid">
                                     <div class="form-group">
                                         <label class="form-label" style="font-weight:600; font-size:0.8rem; display:block; margin-bottom:4px;">
                                             Bubble Heading
@@ -663,7 +619,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                                style="width:100%; padding:9px 12px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.85rem;">
                                     </div>
 
-                                    <div class="form-group" style="grid-column:1 / -1;">
+                                    <div class="form-group full-col">
                                         <label class="form-label" style="font-weight:600; font-size:0.8rem; display:block; margin-bottom:4px;">
                                             Bubble Invitation Message
                                         </label>
@@ -674,77 +630,77 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 </div>
                             </div>
 
-                            <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px;">
+                            <div class="settings-action-bar">
                                 <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Save WhatsApp Settings
+                                    <span>Save WhatsApp Settings</span>
                                 </button>
                             </div>
                         </form>
                     </div>
 
                     <!-- Right: Live Visual Mobile Simulator -->
-                    <div class="admin-card" style="padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); position:sticky; top:90px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                            <h3 style="font-size:1rem; font-weight:800; color:var(--text-primary); margin:0; display:flex; align-items:center; gap:8px;">
+                    <div class="settings-form-card settings-simulator-sticky" style="padding:20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; gap:8px;">
+                            <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-primary); margin:0; display:flex; align-items:center; gap:8px;">
                                 <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10B981; animation:pulse 2s infinite;"></span>
                                 Live Storefront Simulator
                             </h3>
-                            <span style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-page); padding:3px 8px; border-radius:6px; font-weight:600;">
+                            <span style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-page); padding:3px 8px; border-radius:6px; font-weight:600; white-space:nowrap;">
                                 Real-time Visual
                             </span>
                         </div>
 
                         <!-- Simulated Mobile Screen -->
-                        <div style="background:#0F172A; border-radius:24px; padding:12px; box-shadow:0 12px 30px rgba(0,0,0,0.18); border:4px solid #334155;">
+                        <div class="settings-phone-frame">
                             <!-- Phone Notch & Speaker -->
                             <div style="display:flex; justify-content:center; margin-bottom:10px;">
                                 <div style="width:70px; height:5px; background:#475569; border-radius:999px;"></div>
                             </div>
 
                             <!-- Phone Viewport -->
-                            <div id="simViewport" style="background:#F8FAFC; border-radius:16px; height:420px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
+                            <div id="simViewport" style="background:#F8FAFC; border-radius:16px; height:380px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
                                 <!-- Simulated Store Header -->
                                 <div style="background:#FFFFFF; padding:10px 14px; border-bottom:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center;">
                                     <div style="font-weight:800; font-size:0.85rem; color:#0F172A; letter-spacing:1px;">JIYAJI <span style="color:var(--brand-blue); font-size:0.65rem;">LX</span></div>
                                     <div style="display:flex; gap:8px; color:#64748B;">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 1 2-2h6"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
                                     </div>
                                 </div>
 
                                 <!-- Simulated Store Product Hero Card -->
-                                <div style="padding:16px; text-align:center;">
-                                    <div style="background:linear-gradient(135deg, #FAF5FF 0%, #F0F4FD 100%); border-radius:12px; padding:20px 12px; border:1px solid #E2E8F0; margin-bottom:12px;">
+                                <div style="padding:14px; text-align:center;">
+                                    <div style="background:linear-gradient(135deg, #FAF5FF 0%, #F0F4FD 100%); border-radius:12px; padding:16px 10px; border:1px solid #E2E8F0; margin-bottom:10px;">
                                         <div style="font-size:0.65rem; color:var(--brand-purple); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Royal Bridal Couture</div>
-                                        <div style="font-weight:800; font-size:0.95rem; color:#0F172A; margin-bottom:6px;">The Mehrangarh Silk Sherwani</div>
-                                        <div style="font-weight:700; font-size:0.9rem; color:var(--brand-blue);">₹ 48,999</div>
+                                        <div style="font-weight:800; font-size:0.9rem; color:#0F172A; margin-bottom:4px;">The Mehrangarh Silk Sherwani</div>
+                                        <div style="font-weight:700; font-size:0.85rem; color:var(--brand-blue);">₹ 48,999</div>
                                     </div>
-                                    <div style="font-size:0.75rem; color:#64748B;">
+                                    <div style="font-size:0.72rem; color:#64748B; line-height:1.4;">
                                         Handcrafted zardozi embroidery with gold bullion wiring and raw Banarasi silk.
                                     </div>
                                 </div>
 
                                 <!-- Floating WhatsApp Component inside Simulated Viewport -->
-                                <div id="simFloatingContainer" style="position:absolute; bottom:16px; right:16px; display:flex; flex-direction:column; align-items:flex-end; z-index:10; pointer-events:auto;">
+                                <div id="simFloatingContainer" style="position:absolute; bottom:14px; right:14px; display:flex; flex-direction:column; align-items:flex-end; z-index:10; pointer-events:auto;">
                                     <!-- Greeting Speech Bubble -->
-                                    <div id="simBubble" style="background:#FFFFFF; border-radius:12px; padding:10px 14px; margin-bottom:10px; box-shadow:0 8px 24px rgba(0,0,0,0.14); border:1px solid #E2E8F0; max-width:210px; position:relative; transform-origin:bottom right; transition:all 0.3s ease;">
+                                    <div id="simBubble" style="background:#FFFFFF; border-radius:12px; padding:10px 12px; margin-bottom:8px; box-shadow:0 8px 24px rgba(0,0,0,0.14); border:1px solid #E2E8F0; max-width:200px; position:relative; transform-origin:bottom right; transition:all 0.3s ease;">
                                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                            <div id="simBubbleHeading" style="font-weight:800; font-size:0.78rem; color:#0F172A;">
+                                            <div id="simBubbleHeading" style="font-weight:800; font-size:0.75rem; color:#0F172A;">
                                                 <?= htmlspecialchars($flat['whatsapp_popup_heading'] ?? 'Need Styling Advice?') ?>
                                             </div>
-                                            <span style="font-size:0.65rem; background:#DCFCE7; color:#166534; padding:1px 5px; border-radius:4px; font-weight:700;">Online</span>
+                                            <span style="font-size:0.6rem; background:#DCFCE7; color:#166534; padding:1px 4px; border-radius:3px; font-weight:700;">Online</span>
                                         </div>
-                                        <div id="simBubbleText" style="font-size:0.7rem; color:#475569; line-height:1.35;">
+                                        <div id="simBubbleText" style="font-size:0.68rem; color:#475569; line-height:1.35;">
                                             <?= htmlspecialchars($flat['whatsapp_popup_text'] ?? 'Connect directly with our royal wedding couture specialist on WhatsApp.') ?>
                                         </div>
-                                        <div style="position:absolute; bottom:-6px; right:20px; width:12px; height:12px; background:#FFFFFF; border-right:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0; transform:rotate(45deg);"></div>
+                                        <div style="position:absolute; bottom:-5px; right:18px; width:10px; height:10px; background:#FFFFFF; border-right:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0; transform:rotate(45deg);"></div>
                                     </div>
 
                                     <!-- Floating WhatsApp Button -->
                                     <div id="simButton" onclick="testWhatsAppConcierge()"
-                                         style="background:#25D366; color:#FFFFFF; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,0.4); cursor:pointer; position:relative; transition:all 0.3s ease;">
-                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                         style="background:#25D366; color:#FFFFFF; width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,0.4); cursor:pointer; position:relative; transition:all 0.3s ease;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                                         </svg>
                                     </div>
@@ -754,7 +710,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                         <div style="margin-top:14px; text-align:center;">
                             <button type="button" onclick="testWhatsAppConcierge()"
-                                    style="background:transparent; border:1px dashed #25D366; color:#059669; font-weight:700; font-size:0.82rem; padding:8px 16px; border-radius:var(--radius-md); cursor:pointer; width:100%; transition:var(--transition);">
+                                    style="background:transparent; border:1px dashed #25D366; color:#059669; font-weight:700; font-size:0.82rem; padding:10px 16px; border-radius:var(--radius-md); cursor:pointer; width:100%; transition:var(--transition); min-height:42px;">
                                 📲 Click to Launch Test Chat in New Tab
                             </button>
                         </div>
@@ -764,7 +720,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 4: LOCALIZATION & CURRENCY -->
             <?php if ($activeTab === 'localization'): ?>
-                <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); max-width:880px;">
+                <div class="settings-form-card" style="max-width:880px;">
                     <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                         <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                             <span style="color:var(--brand-teal);">🌐</span> Currency, Regional Formatting &amp; Timezone
@@ -778,7 +734,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         <?= csrf_field() ?>
                         <input type="hidden" name="_tab" value="localization">
 
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                        <div class="settings-form-grid">
                             <div class="form-group">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Base Currency Code (ISO 4217)
@@ -849,7 +805,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 </select>
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Time Clock Display Format
                                 </label>
@@ -861,10 +817,10 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px; margin-top:24px;">
+                        <div class="settings-action-bar">
                             <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                Save Regional Formatting
+                                <span>Save Regional Formatting</span>
                             </button>
                         </div>
                     </form>
@@ -873,7 +829,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 5: MARKETING & TRACKING PIXELS (Feature 30 & Meta Pixel) -->
             <?php if ($activeTab === 'marketing'): ?>
-                <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); max-width:960px;">
+                <div class="settings-form-card" style="max-width:960px;">
                     <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                         <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                             <span style="color:var(--brand-blue);">📊</span> Tracking Pixels, Meta Ads &amp; Custom Scripts
@@ -889,9 +845,9 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                         <!-- Meta Pixel Section -->
                         <div style="background:rgba(45, 130, 255, 0.04); border:1px solid rgba(45, 130, 255, 0.2); border-radius:var(--radius-md); padding:20px; margin-bottom:24px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:12px; flex-wrap:wrap;">
                                 <div style="display:flex; align-items:center; gap:12px;">
-                                    <div style="background:#1877F2; color:#fff; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2rem;">
+                                    <div style="background:#1877F2; color:#fff; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2rem; flex-shrink:0;">
                                         f
                                     </div>
                                     <div>
@@ -900,7 +856,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                     </div>
                                 </div>
 
-                                <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.85rem; color:var(--text-primary);">
+                                <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.85rem; color:var(--text-primary); white-space:nowrap;">
                                     <input type="checkbox" name="meta_pixel_enabled" value="1" <?= !empty($flat['meta_pixel_enabled']) ? 'checked' : '' ?> style="width:18px; height:18px;">
                                     Enable Meta Pixel
                                 </label>
@@ -920,9 +876,9 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                         <!-- Google Analytics 4 Section -->
                         <div style="background:rgba(245, 158, 11, 0.04); border:1px solid rgba(245, 158, 11, 0.2); border-radius:var(--radius-md); padding:20px; margin-bottom:24px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:12px; flex-wrap:wrap;">
                                 <div style="display:flex; align-items:center; gap:12px;">
-                                    <div style="background:#EA4335; color:#fff; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem;">
+                                    <div style="background:#EA4335; color:#fff; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0;">
                                         G
                                     </div>
                                     <div>
@@ -931,13 +887,13 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                     </div>
                                 </div>
 
-                                <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.85rem; color:var(--text-primary);">
+                                <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.85rem; color:var(--text-primary); white-space:nowrap;">
                                     <input type="checkbox" name="ga4_enabled" value="1" <?= !empty($flat['ga4_enabled']) ? 'checked' : '' ?> style="width:18px; height:18px;">
                                     Enable GA4
                                 </label>
                             </div>
 
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                            <div class="settings-form-grid">
                                 <div class="form-group">
                                     <label class="form-label" style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:6px;">
                                         GA4 Measurement ID
@@ -950,7 +906,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
                                 <div class="form-group">
                                     <label class="form-label" style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:6px;">
-                                        Google Tag Manager (GTM) Container ID
+                                        Google Tag Manager Container ID
                                     </label>
                                     <input type="text" name="gtm_container_id" class="form-input"
                                            value="<?= htmlspecialchars($flat['gtm_container_id'] ?? '') ?>"
@@ -981,10 +937,10 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px;">
+                        <div class="settings-action-bar">
                             <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                Save Pixel &amp; Marketing Settings
+                                <span>Save Pixel &amp; Marketing Settings</span>
                             </button>
                         </div>
                     </form>
@@ -993,7 +949,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 6: SOCIAL MEDIA & CHANNELS -->
             <?php if ($activeTab === 'social'): ?>
-                <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); max-width:880px;">
+                <div class="settings-form-card" style="max-width:880px;">
                     <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                         <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                             <span style="color:#db2777;">💖</span> Social Media &amp; Community Channels
@@ -1059,10 +1015,10 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px; margin-top:24px;">
+                        <div class="settings-action-bar">
                             <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                Save Social Channels
+                                <span>Save Social Channels</span>
                             </button>
                         </div>
                     </form>
@@ -1071,7 +1027,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
 
             <!-- TAB 7: STORE OPERATIONS & MAINTENANCE -->
             <?php if ($activeTab === 'operations'): ?>
-                <div class="admin-card" style="padding:28px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:0 2px 8px rgba(0,0,0,0.04); max-width:960px;">
+                <div class="settings-form-card" style="max-width:960px;">
                     <div style="margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
                         <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
                             <span style="color:var(--status-warning);">🛡️</span> Store Operations &amp; Atelier Controls
@@ -1086,9 +1042,9 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         <input type="hidden" name="_tab" value="operations">
 
                         <!-- Maintenance Mode Switch -->
-                        <div style="background:<?= !empty($flat['maintenance_mode']) ? 'rgba(245, 158, 11, 0.12)' : 'rgba(248, 250, 252, 0.8)' ?>; border:1px solid <?= !empty($flat['maintenance_mode']) ? '#F59E0B' : 'var(--border-color)' ?>; border-radius:var(--radius-md); padding:20px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; transition:var(--transition);">
+                        <div class="settings-toggle-card" style="background:<?= !empty($flat['maintenance_mode']) ? 'rgba(245, 158, 11, 0.12)' : 'rgba(248, 250, 252, 0.8)' ?>; border:1px solid <?= !empty($flat['maintenance_mode']) ? '#F59E0B' : 'var(--border-color)' ?>; margin-bottom:20px; transition:var(--transition);">
                             <div>
-                                <div style="font-weight:800; font-size:1rem; color:<?= !empty($flat['maintenance_mode']) ? '#B45309' : 'var(--text-primary)' ?>; display:flex; align-items:center; gap:8px;">
+                                <div style="font-weight:800; font-size:1rem; color:<?= !empty($flat['maintenance_mode']) ? '#B45309' : 'var(--text-primary)' ?>; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                                     <span>Maintenance Mode (Atelier Refresh)</span>
                                     <?php if (!empty($flat['maintenance_mode'])): ?>
                                         <span style="background:#F59E0B; color:#fff; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:999px;">ACTIVE</span>
@@ -1099,12 +1055,14 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 </div>
                             </div>
 
-                            <label class="switch" style="position:relative; display:inline-block; width:52px; height:28px;">
-                                <input type="checkbox" name="maintenance_mode" value="1" <?= !empty($flat['maintenance_mode']) ? 'checked' : '' ?> style="opacity:0; width:0; height:0;">
-                                <span class="slider round" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:<?= !empty($flat['maintenance_mode']) ? '#F59E0B' : '#cbd5e1' ?>; transition:.3s; border-radius:34px;">
-                                    <span style="position:absolute; content:''; height:22px; width:22px; left:<?= !empty($flat['maintenance_mode']) ? '27px' : '3px' ?>; bottom:3px; background-color:white; transition:.3s; border-radius:50%;"></span>
-                                </span>
-                            </label>
+                            <div class="toggle-switch-wrapper">
+                                <label class="switch" style="position:relative; display:inline-block; width:52px; height:28px;">
+                                    <input type="checkbox" name="maintenance_mode" value="1" <?= !empty($flat['maintenance_mode']) ? 'checked' : '' ?> style="opacity:0; width:0; height:0;">
+                                    <span class="slider round" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:<?= !empty($flat['maintenance_mode']) ? '#F59E0B' : '#cbd5e1' ?>; transition:.3s; border-radius:34px;">
+                                        <span style="position:absolute; content:''; height:22px; width:22px; left:<?= !empty($flat['maintenance_mode']) ? '27px' : '3px' ?>; bottom:3px; background-color:white; transition:.3s; border-radius:50%;"></span>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
 
                         <!-- Maintenance Notice Text -->
@@ -1118,18 +1076,20 @@ $groupMeta = $catalog[$activeTab] ?? [];
                         </div>
 
                         <!-- Order Acceptance Switch -->
-                        <div style="background:var(--bg-page); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between;">
+                        <div class="settings-toggle-card" style="background:var(--bg-page); border:1px solid var(--border-color); margin-bottom:24px;">
                             <div>
                                 <div style="font-weight:700; font-size:0.95rem; color:var(--text-primary);">Accept Online Orders &amp; Checkout</div>
                                 <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Turn off if you need to temporarily freeze checkout intake during peak royal festival season.</div>
                             </div>
-                            <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.88rem;">
-                                <input type="checkbox" name="order_acceptance" value="1" <?= !empty($flat['order_acceptance']) ? 'checked' : '' ?> style="width:20px; height:20px;">
-                                Accepting Orders
-                            </label>
+                            <div class="toggle-switch-wrapper">
+                                <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; font-size:0.88rem; white-space:nowrap;">
+                                    <input type="checkbox" name="order_acceptance" value="1" <?= !empty($flat['order_acceptance']) ? 'checked' : '' ?> style="width:20px; height:20px;">
+                                    <span>Accepting Orders</span>
+                                </label>
+                            </div>
                         </div>
 
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+                        <div class="settings-form-grid" style="margin-bottom:20px;">
                             <div class="form-group">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Global Low Stock Warning Threshold
@@ -1152,7 +1112,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 <small style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:4px;">Minimum cart subtotal required to proceed to payment.</small>
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label class="form-label" style="font-weight:700; font-size:0.88rem; display:block; margin-bottom:6px;">
                                     Admin Order Dispatch Alert Email
                                 </label>
@@ -1163,7 +1123,7 @@ $groupMeta = $catalog[$activeTab] ?? [];
                                 <small style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:4px;">Sends immediate notification emails whenever a customer places an order.</small>
                             </div>
 
-                            <div class="form-group" style="grid-column:1 / -1;">
+                            <div class="form-group full-col">
                                 <label style="display:inline-flex; align-items:center; gap:10px; cursor:pointer;">
                                     <input type="checkbox" name="allow_guest_checkout" value="1" <?= !empty($flat['allow_guest_checkout']) ? 'checked' : '' ?> style="width:18px; height:18px;">
                                     <span style="font-weight:700; font-size:0.88rem; color:var(--text-primary);">Allow Guest Checkout Without Compulsory Registration</span>
@@ -1171,16 +1131,17 @@ $groupMeta = $catalog[$activeTab] ?? [];
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:flex-end; border-top:1px solid var(--border-color); padding-top:20px; margin-top:24px;">
+                        <div class="settings-action-bar">
                             <button type="submit" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px; padding:12px 28px; font-weight:700; border-radius:var(--radius-md);">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                Save Operational Settings
+                                <span>Save Operational Settings</span>
                             </button>
                         </div>
                     </form>
                 </div>
             <?php endif; ?>
 
+            </div> <!-- /.settings-container -->
         </main>
     </div>
 </div>
@@ -1210,11 +1171,11 @@ function updateSimulator() {
     const posSelect = document.getElementById('inputWhatsappPosition');
     const pos = posSelect ? posSelect.value : 'bottom-right';
     if (pos === 'bottom-left') {
-        container.style.left = '16px';
+        container.style.left = '14px';
         container.style.right = 'auto';
         container.style.alignItems = 'flex-start';
     } else {
-        container.style.right = '16px';
+        container.style.right = '14px';
         container.style.left = 'auto';
         container.style.alignItems = 'flex-end';
     }
@@ -1269,14 +1230,6 @@ function testWhatsAppConcierge() {
     0% { transform: scale(0.95); opacity: 0.8; }
     50% { transform: scale(1.15); opacity: 1; }
     100% { transform: scale(0.95); opacity: 0.8; }
-}
-.settings-tab-btn:hover {
-    background: rgba(45, 130, 255, 0.08) !important;
-    color: var(--brand-blue) !important;
-}
-.settings-tab-btn.active:hover {
-    background: var(--gradient-primary) !important;
-    color: #fff !important;
 }
 </style>
 
