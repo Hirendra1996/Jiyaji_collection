@@ -138,6 +138,27 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarBackdrop.addEventListener('click', closeSidebar);
     }
 
+    // Auto-close sidebar on mobile when navigating
+    if (adminSidebar) {
+        const sidebarLinks = adminSidebar.querySelectorAll('a.nav-item');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) {
+                    closeSidebar();
+                }
+            });
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSidebar();
+            if (profileMenu) profileMenu.classList.remove('show');
+            if (notifMenu) notifMenu.classList.remove('show');
+        }
+    });
+
     // 5. Profile Dropdown Toggle
     const profilePill = document.getElementById('profilePill');
     const profileMenu = document.getElementById('profileMenu');

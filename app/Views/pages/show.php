@@ -60,10 +60,12 @@
         .header-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 16px 24px;
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .brand-logo {
             display: flex;
@@ -74,11 +76,12 @@
             font-weight: 800;
             font-size: 1.25rem;
             letter-spacing: 1px;
+            flex-shrink: 0;
         }
         .brand-badge {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             color: #f8fafc;
-            padding: 4px 8px;
+            padding: 5px 9px;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -94,14 +97,18 @@
         }
         .header-nav {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             align-items: center;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 2px;
         }
         .header-nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
+            white-space: nowrap;
             transition: color 0.15s ease;
         }
         .header-nav a:hover { color: var(--brand-blue); }
@@ -109,18 +116,19 @@
         /* Main Container */
         .page-container {
             max-width: 1200px;
-            margin: 32px auto 64px auto;
-            padding: 0 24px;
+            margin: 28px auto 60px auto;
+            padding: 0 20px;
         }
 
         /* Breadcrumbs */
         .breadcrumbs {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            flex-wrap: wrap;
+            gap: 6px;
         }
         .breadcrumbs a {
             color: var(--brand-blue);
@@ -131,7 +139,7 @@
         .layout-grid {
             display: grid;
             grid-template-columns: 280px 1fr;
-            gap: 32px;
+            gap: 28px;
             align-items: start;
         }
 
@@ -143,7 +151,7 @@
             padding: 20px;
             box-shadow: var(--shadow-sm);
             position: sticky;
-            top: 90px;
+            top: 84px;
         }
         .sidebar-title {
             font-size: 0.82rem;
@@ -197,23 +205,25 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
-            padding: 40px;
+            padding: 36px;
             box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
         .article-header {
-            margin-bottom: 28px;
-            padding-bottom: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
             border-bottom: 1px solid var(--border-color);
         }
         .article-title {
-            font-size: 2.1rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--brand-dark);
             line-height: 1.25;
             margin-bottom: 12px;
+            word-break: break-word;
         }
         .article-excerpt {
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             color: var(--text-secondary);
             line-height: 1.55;
             font-weight: 500;
@@ -222,32 +232,36 @@
         .article-meta {
             display: flex;
             align-items: center;
-            gap: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
             font-size: 0.8rem;
             color: var(--text-muted);
         }
 
         /* Typography inside article body */
+        .article-body {
+            word-break: break-word;
+        }
         .article-body h2 {
-            font-size: 1.45rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--brand-dark);
-            margin: 28px 0 12px 0;
+            margin: 24px 0 10px 0;
         }
         .article-body h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--brand-dark);
-            margin: 20px 0 10px 0;
+            margin: 18px 0 8px 0;
         }
         .article-body p {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
         }
         .article-body ul, .article-body ol {
-            margin: 0 0 18px 24px;
+            margin: 0 0 16px 20px;
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
@@ -256,8 +270,8 @@
         .article-body blockquote {
             border-left: 3px solid var(--brand-gold);
             background: rgba(197, 168, 128, 0.08);
-            padding: 14px 20px;
-            margin: 20px 0;
+            padding: 14px 18px;
+            margin: 18px 0;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
             font-style: italic;
             color: #334155;
@@ -266,11 +280,24 @@
             color: var(--brand-blue);
             text-decoration: underline;
         }
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .article-body th, .article-body td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
 
         /* Contact Form Module */
         .contact-form-box {
-            margin-top: 36px;
-            padding-top: 32px;
+            margin-top: 32px;
+            padding-top: 28px;
             border-top: 1px solid var(--border-color);
         }
         .form-grid {
@@ -327,18 +354,69 @@
         .storefront-footer {
             background: #ffffff;
             border-top: 1px solid var(--border-color);
-            padding: 32px 24px;
+            padding: 32px 20px;
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        @media (max-width: 840px) {
-            .layout-grid { grid-template-columns: 1fr; }
-            .sidebar-card { position: static; }
-            .form-grid { grid-template-columns: 1fr; }
-            .article-card { padding: 24px; }
-            .article-title { font-size: 1.7rem; }
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .sidebar-card {
+                position: static;
+                top: auto;
+            }
+            .sidebar-menu {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 6px;
+                margin-bottom: 16px;
+            }
+            .article-card {
+                padding: 24px 20px;
+                border-radius: var(--radius-lg);
+            }
+            .article-title {
+                font-size: 1.65rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 16px;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 14px;
+            }
+            .page-container {
+                margin: 16px auto 40px auto;
+                padding: 0 14px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .btn-submit {
+                width: 100%;
+                text-align: center;
+            }
+            .article-card {
+                padding: 18px 14px;
+            }
+            .article-title {
+                font-size: 1.45rem;
+            }
+            .sidebar-menu {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
