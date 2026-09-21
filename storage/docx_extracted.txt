@@ -1,0 +1,147 @@
+
+
+Web Design & Development Services
+QUOTATION
+No. 048 | Date: 08 Sept. 2026
+Valid for 15 Days
+
+Client Details
+Client Name: Jiya JI LX
+Project Overview
+We are pleased to submit our proposal for the design and development of a fully functional e-commerce website. Two package options are outlined below — Basic and Advanced — so you can choose the solution that best fits your business needs and budget.
+Project Technology Stack
+The project will be built using PHP (Custom MVC), HTML5, CSS3, JavaScript, Tailwind CSS, and MySQL.
+Complete Package — All Features Included
+#
+Complete Package
+Full-featured e-commerce store — design, payments, shipping, returns, analytics & priority support
+PRICE
+
+1
+Responsive Website Design
+Fully responsive layout that adapts seamlessly to mobile, tablet & desktop screens. Built using fluid grids and media queries so the site looks and functions perfectly on all screen sizes. Cross-browser tested on Chrome, Firefox, Safari, and Edge for a consistent look and feel.
+
+2
+Homepage & Category Pages
+Custom-designed homepage with hero banners/sliders, featured product sections, promotional highlights, and clearly organised category & sub-category listing pages. Navigation is structured for intuitive browsing, drawing visitors deeper into the catalogue.
+
+3
+Product Listing Page
+Grid or list view of products with pagination or infinite scroll, a quick-view modal for fast product preview without leaving the page, and client-side sorting by price (low to high / high to low), newest arrivals, and popularity.
+
+4
+Detailed Product Page
+Individual product pages with a multi-image gallery (zoom on hover/pinch), full product description, specification table, price, size/colour variant selector linked to individual stock counts, and a real-time stock availability indicator.
+
+5
+Shopping Cart
+Persistent shopping cart that retains items across sessions (logged-in and guest users). Customers can add, update quantities, or remove items at any time; cart totals and tax amounts recalculate automatically.
+
+6
+Wishlist / Save for Later
+Registered customers can save any product to a personal wishlist from the listing or detail page and return to purchase it later. The wishlist is accessible from the account dashboard and can be shared or moved to cart in one click.
+
+7
+User Registration & Login
+Secure sign-up and sign-in via email and password with bcrypt hashing. Includes password reset via email link/OTP. All sessions use secure, httpOnly cookies.
+
+8
+Customer Account Dashboard
+A dedicated customer portal showing order history with status and tracking, saved delivery addresses (add/edit/delete), profile management, and wishlist — all in one place after login.
+
+9
+Product Search & Filters
+A live keyword search bar with partial-match suggestions. Customers can further narrow results using sidebar filters for category, price range, brand, size, colour, and average rating — all without page reloads.
+
+10
+Admin Panel — Product Management
+Admin can add, edit, or delete products and categories from a purpose-built dashboard. Supports bulk image uploads, rich-text description editor, pricing, per-variant stock quantities, and product status (active/draft/archived).
+
+11
+Admin Panel — Order Management
+Admin can view all incoming orders, filter by status, and update each order through its lifecycle: Pending → Confirmed → Packed → Shipped → Delivered or Cancelled. Customer details and shipping address are shown on each order card.
+
+12
+Checkout — Cash on Delivery (COD)
+A streamlined COD checkout: customer confirms delivery address, reviews the order summary, and places the order. An automated confirmation email is sent immediately with order details and expected delivery window.
+
+13
+Basic Order Tracking
+Customers can view the current status of any order from their account dashboard (Pending, Confirmed, Shipped, Delivered). Status is updated manually by the admin. Note: live courier tracking is part of the Advanced features below.
+
+14
+Static Content Pages
+Ready-to-edit pages for Contact Us (with enquiry/callback form), About Us, Privacy Policy, Terms & Conditions, and Shipping Policy — essential for legal compliance and customer trust.
+
+15
+Security & Performance
+SSL certificate configuration, server-side image optimisation (WebP conversion, compression), browser caching headers, and minified CSS/JS assets for fast page-load times and improved Core Web Vitals scores.
+
+16
+Payment Gateway Integration
+Secure online payment integration with Razorpay (or equivalent gateway) supporting PCI-DSS-compliant transactions. Includes API key configuration, webhook setup for real-time payment status updates, transaction logging, and a payment success/failure redirect flow. No card data is ever stored on your server.
+
+17
+Multiple Payment Options
+A unified checkout experience offering Credit/Debit Cards (Visa, Mastercard, RuPay), Net Banking (all major Indian banks), UPI and Cash on Delivery. Admin can enable or disable any method individually and set COD availability by pincode or order value threshold.
+
+18
+Shipment / Courier Integration
+API-level integration with courier and logistics platforms such as Shiprocket or Delhivery. On order confirmation, a shipment booking request is automatically sent to the courier. The system retrieves the AWB (tracking) number, generates a print-ready shipping label (PDF), and stores it against the order in the admin panel — eliminating manual data entry.
+
+19
+Live Order Tracking
+Customers can track their orders in real time from the "My Orders" page using the courier AWB number. The tracking widget polls the courier API and displays a step-by-step timeline (Dispatched → In Transit → Out for Delivery → Delivered). Estimated delivery date is shown wherever available — no third-party tracking site redirect required.
+
+20
+Automated Shipping Rate Calculation
+Shipping charges are calculated automatically at checkout based on the customer's delivery pincode, total cart weight, and order value. Admin can configure zone-wise flat rates, weight slabs, and a free-shipping threshold (e.g., free delivery above ₹999). Multiple shipping tiers (Standard / Express) can be offered simultaneously.
+
+21
+Return & Refund Management
+Customers can raise a return or exchange request from their order history with a reason and optional photo upload. The request enters an admin approval queue where it can be accepted or rejected with a note. Once approved, a reverse pickup is booked via the courier partner (if integrated). Status notifications are sent at every stage: Requested → Approved/Rejected → Pickup Scheduled → Item Received → Refund Initiated.
+
+22
+Refund Processing
+Once a return is approved, refunds are initiated automatically to the customer's original payment method via the payment gateway refund API (for online payments). 
+
+23
+Coupon Code Management
+Admin can create unlimited coupon codes with full rule configuration: flat-amount (e.g., ₹100 off) or percentage-based (e.g., 15% off), minimum cart value, maximum discount cap, per-user usage limit, total redemption limit, product/category restrictions, and an expiry date and time. Coupons can be marked public (site-wide) or private (shared directly with select customers). Usage reports show which coupons perform best.
+
+24
+Customer Reviews & Ratings
+Only customers who have purchased and received a product can submit a review (verified-buyer check). Each review includes a 1–5 star rating, a written review, and optional photo uploads. Reviews enter an admin moderation queue before going live — admin can approve, reject, or flag. Published reviews display an aggregate star rating on the product listing page, helping future buyers make informed decisions.
+
+25
+Inventory & Stock Alerts
+Every product and variant (size, colour, etc.) has a dedicated stock counter that decrements automatically on each confirmed order and increments on cancellations or manual restocking. Admin can set a low-stock threshold per product (e.g., alert when quantity falls below 10). Email alerts are sent to the admin team when stock hits the threshold or reaches zero. Out-of-stock products can show an "Out of Stock" badge or allow back-orders — configurable per product.
+
+26
+Advanced Analytics & Reporting
+A dedicated analytics dashboard shows key metrics in real time: total revenue, orders placed, average order value, and conversion rate. Drill-down reports include daily/weekly/monthly sales trends, best-selling products, category-wise revenue split, new vs. returning customer ratio, and coupon usage summary. Includes top keyword search tracking to see what customers are searching for on the site, and Meta Pixel integration for ad tracking and retargeting on Facebook/Instagram. All reports are exportable to CSV/Excel for sharing with stakeholders.
+
+27
+Notifications
+Triggers include: order placed, payment confirmed, order shipped (with tracking link), out for delivery, delivered, order cancelled, return approved/rejected, and refund processed. 
+
+28
+Priority Support & Maintenance
+Post-launch, the client receives 1year of dedicated priority support covering bug fixes and server/configuration issues. Support requests are acknowledged within 24 business hours and resolved within 48–72 hours depending on severity. Coverage includes fixes for broken functionality, payment or courier API changes by the third-party provider, and compatibility issues arising from server updates.
+
+29
+Role-Based Access Control (Admin Panel)
+The Super Admin can create sub-admin/staff accounts and assign specific roles (e.g., Order Manager, Inventory Manager, Support Staff) with permissions controlling exactly which sections of the admin panel each role can view, edit, or manage — ensuring secure, controlled access for the team.
+
+30
+WhatsApp Chat Button
+A floating WhatsApp chat button on the storefront lets visitors instantly message the store on a configured WhatsApp number for quick queries, order assistance, or support — improving customer engagement and response time.
+
+Package Total
+29,999/-
+
+
+HOSTING & DOMAIN (NOT INCLUDED IN PRICE)
+
+
+ByteLabs Infotech   | bytelabsinfotech.in  |   bytelabsinfotech@gmail.com   |   +91-8770902424
