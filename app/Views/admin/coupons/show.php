@@ -1,13 +1,15 @@
 <?php
 include __DIR__ . '/../layouts/header.php';
 
-/**
- * Guard against MySQL zero-dates and negative Unix timestamps.
- */
-function validTs(?string $dateStr): int|false {
-    if (empty($dateStr) || $dateStr === '0000-00-00 00:00:00') return false;
-    $ts = strtotime($dateStr);
-    return ($ts && $ts > 946684800) ? $ts : false;
+if (!function_exists('validTs')) {
+    /**
+     * Guard against MySQL zero-dates and negative Unix timestamps.
+     */
+    function validTs(?string $dateStr): int|false {
+        if (empty($dateStr) || $dateStr === '0000-00-00 00:00:00') return false;
+        $ts = strtotime($dateStr);
+        return ($ts && $ts > 946684800) ? $ts : false;
+    }
 }
 
 $status = $coupon['computed_status'];

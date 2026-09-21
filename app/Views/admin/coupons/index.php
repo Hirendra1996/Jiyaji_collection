@@ -1,13 +1,15 @@
 <?php
 include __DIR__ . '/../layouts/header.php';
 
-/**
- * Guard against MySQL zero-dates and negative Unix timestamps.
- */
-function validTs(?string $d): int|false {
-    if (empty($d) || $d === '0000-00-00 00:00:00') return false;
-    $ts = strtotime($d);
-    return ($ts && $ts > 946684800) ? $ts : false;
+if (!function_exists('validTs')) {
+    /**
+     * Guard against MySQL zero-dates and negative Unix timestamps.
+     */
+    function validTs(?string $d): int|false {
+        if (empty($d) || $d === '0000-00-00 00:00:00') return false;
+        $ts = strtotime($d);
+        return ($ts && $ts > 946684800) ? $ts : false;
+    }
 }
 
 $statusTabs = [
