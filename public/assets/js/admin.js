@@ -265,4 +265,30 @@ document.addEventListener('DOMContentLoaded', () => {
             window.showToast('success', 'Export Started', 'Preparing comprehensive PDF/Excel sales report for download.', 3500);
         });
     }
+
+    // 12. Dynamic Responsive Table-to-Card Label Setup
+    function setupResponsiveTables() {
+        const tables = document.querySelectorAll('table.orders-table, table.data-table, .orders-table-wrapper table, .table-responsive table, .card-panel table');
+        tables.forEach(table => {
+            if (table.classList.contains('items-table') || table.classList.contains('package-table') || table.closest('.invoice-box') || table.closest('.shipping-label-card')) {
+                return;
+            }
+            const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+            if (headers.length === 0) return;
+
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach((cell, idx) => {
+                    if (headers[idx] && !cell.hasAttribute('data-label')) {
+                        cell.setAttribute('data-label', headers[idx]);
+                    }
+                });
+            });
+        });
+    }
+
+    setupResponsiveTables();
+    window.setupResponsiveTables = setupResponsiveTables;
 });
+

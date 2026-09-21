@@ -2335,21 +2335,129 @@ select.form-input {
         justify-content: center;
     }
 
-    .orders-table th,
-    .orders-table td {
-        padding: 10px 12px;
-        font-size: 0.82rem;
+    /* ==========================================================================
+       Mobile Table-to-Card Responsive Transformation
+       ========================================================================== */
+    .orders-table-wrapper,
+    .table-responsive {
+        overflow-x: visible !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
-    .orders-table-wrapper {
-        -webkit-overflow-scrolling: touch;
-        overflow-x: auto;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-color);
+    /* Transform table into card containers */
+    table.orders-table,
+    table.data-table,
+    .orders-table-wrapper table,
+    .table-responsive table,
+    .card-panel table:not(.items-table):not(.package-table) {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        border: none !important;
+        background: transparent !important;
     }
 
-    .orders-table {
-        min-width: 600px;
+    table.orders-table thead,
+    table.data-table thead,
+    .orders-table-wrapper table thead,
+    .table-responsive table thead,
+    .card-panel table:not(.items-table):not(.package-table) thead {
+        display: none !important;
+    }
+
+    table.orders-table tbody,
+    table.data-table tbody,
+    .orders-table-wrapper table tbody,
+    .table-responsive table tbody,
+    .card-panel table:not(.items-table):not(.package-table) tbody {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        width: 100% !important;
+    }
+
+    table.orders-table tbody tr,
+    table.data-table tbody tr,
+    .orders-table-wrapper table tbody tr,
+    .table-responsive table tbody tr,
+    .card-panel table:not(.items-table):not(.package-table) tbody tr {
+        display: flex !important;
+        flex-direction: column !important;
+        background: var(--bg-surface, #FFFFFF) !important;
+        border: 1px solid var(--border-color, #E2E8F0) !important;
+        border-radius: var(--radius-lg, 14px) !important;
+        padding: 14px 16px !important;
+        box-shadow: var(--shadow-card, 0 2px 10px rgba(15, 23, 42, 0.04)) !important;
+        transition: var(--transition);
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    table.orders-table tbody tr:hover,
+    table.data-table tbody tr:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-elevated, 0 8px 24px -4px rgba(15, 23, 42, 0.08)) !important;
+        border-color: var(--brand-blue-border) !important;
+    }
+
+    table.orders-table tbody td,
+    table.data-table tbody td,
+    .orders-table-wrapper table tbody td,
+    .table-responsive table tbody td,
+    .card-panel table:not(.items-table):not(.package-table) tbody td {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 9px 0 !important;
+        border: none !important;
+        border-bottom: 1px dashed var(--border-color-light, #F1F5F9) !important;
+        font-size: 0.88rem !important;
+        color: var(--text-primary) !important;
+        text-align: right !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    table.orders-table tbody td:last-child,
+    table.data-table tbody td:last-child,
+    .orders-table-wrapper table tbody td:last-child,
+    .table-responsive table tbody td:last-child,
+    .card-panel table:not(.items-table):not(.package-table) tbody td:last-child {
+        border-bottom: none !important;
+        padding-top: 12px !important;
+        margin-top: 4px !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* Column Header Label generated dynamically */
+    table.orders-table tbody td[data-label]::before,
+    table.data-table tbody td[data-label]::before,
+    .orders-table-wrapper table tbody td[data-label]::before,
+    .table-responsive table tbody td[data-label]::before,
+    .card-panel table:not(.items-table):not(.package-table) tbody td[data-label]::before {
+        content: attr(data-label);
+        font-size: 0.74rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--text-muted, #94A3B8) !important;
+        text-align: left !important;
+        margin-right: 12px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Keep forms inside variant cards full width */
+    #variantsTable td .form-input {
+        max-width: 160px;
+    }
+
+    table.orders-table tbody td .badge,
+    table.data-table tbody td .badge {
+        margin: 0 !important;
     }
 
     .toast-container {
