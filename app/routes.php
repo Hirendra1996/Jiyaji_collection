@@ -203,6 +203,14 @@ $router->group(fn() => \App\Middleware\AuthMiddleware::check(), function() use (
     $router->post('admin/pages/delete', 'Admin/PageController@delete');
     $router->post('admin/pages/enquiry/toggle', 'Admin/PageController@toggleEnquiry');
     $router->post('admin/pages/enquiry/delete', 'Admin/PageController@deleteEnquiry');
+
+    // =========================================================================
+    // STORE SETTINGS & BRAND CONFIGURATION (Feature 30 & Meta Pixel)
+    // =========================================================================
+    $router->get('admin/settings', 'Admin/StoreSettingController@index');
+    $router->post('admin/settings/update', 'Admin/StoreSettingController@update');
+    $router->post('admin/settings/toggle', 'Admin/StoreSettingController@toggle');
+    $router->post('admin/settings/upload-asset', 'Admin/StoreSettingController@uploadAsset');
 });
 
 // =============================================================================

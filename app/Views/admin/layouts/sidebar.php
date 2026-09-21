@@ -14,9 +14,10 @@ $isPaymentGateways = strpos($currentUri, 'admin/payment-gateways') !== false;
 $isShippingPincodes = strpos($currentUri, 'admin/shipping-pincodes') !== false;
 $isStaff = strpos($currentUri, 'admin/staff') !== false;
 $isPages = strpos($currentUri, 'admin/pages') !== false;
+$isStoreSettings = strpos($currentUri, 'admin/settings') !== false;
 $isStockAlerts = strpos($currentUri, 'admin/products') !== false && (($_GET['status'] ?? '') === 'low_stock');
 $isProducts = strpos($currentUri, 'admin/products') !== false && !$isStockAlerts;
-$isDashboard = !$isOrders && !$isReturns && !$isShipments && !$isProducts && !$isCategories && !$isCustomers && !$isReviews && !$isTickets && !$isCoupons && !$isSearchAnalytics && !$isSalesAnalytics && !$isPaymentGateways && !$isShippingPincodes && !$isStaff && !$isPages && !$isStockAlerts && (strpos($currentUri, 'admin/dashboard') !== false || preg_match('#admin/?$#', $currentUri));
+$isDashboard = !$isOrders && !$isReturns && !$isShipments && !$isProducts && !$isCategories && !$isCustomers && !$isReviews && !$isTickets && !$isCoupons && !$isSearchAnalytics && !$isSalesAnalytics && !$isPaymentGateways && !$isShippingPincodes && !$isStaff && !$isPages && !$isStoreSettings && !$isStockAlerts && (strpos($currentUri, 'admin/dashboard') !== false || preg_match('#admin/?$#', $currentUri));
 ?>
 <!-- Sidebar Backdrop (for mobile) -->
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
@@ -287,7 +288,7 @@ $isDashboard = !$isOrders && !$isReturns && !$isShipments && !$isProducts && !$i
                 </a>
             </li>
             <li>
-                <div class="nav-item disabled" title="Feature 30 & Meta Pixel: WhatsApp Float, Contact, Brand Info">
+                <a href="<?= url('admin/settings') ?>" class="nav-item <?= $isStoreSettings ? 'active' : '' ?>" id="navStoreSettings" title="Brand Identity, WhatsApp Concierge, Meta Pixel, Contact & Operations">
                     <div class="nav-link-content">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="3"></circle>
@@ -295,8 +296,8 @@ $isDashboard = !$isOrders && !$isReturns && !$isShipments && !$isProducts && !$i
                         </svg>
                         <span>Store Settings</span>
                     </div>
-                    <span class="badge-soon">Soon</span>
-                </div>
+                    <span class="badge-live" style="background: rgba(16, 185, 129, 0.1); color: var(--status-success); font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Live</span>
+                </a>
             </li>
         </ul>
     </div>

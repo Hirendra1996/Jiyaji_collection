@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D82FF" />
+      <stop offset="100%" stop-color="#8C30F5" />
+    </linearGradient>
+    <linearGradient id="goldFav" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#favGrad)" />
+  <g transform="translate(10, 10)">
+    <polygon points="22,6 28,16 38,13 33,27 11,27 6,13 16,16" fill="url(#goldFav)" />
+    <circle cx="22" cy="4" r="2.5" fill="#FDE68A" />
+    <circle cx="6" cy="11" r="2" fill="#FDE68A" />
+    <circle cx="38" cy="11" r="2" fill="#FDE68A" />
+    <rect x="9" y="29" width="26" height="3" rx="1.5" fill="#FFFFFF" opacity="0.9" />
+    <path d="M14 36 L22 45 L30 36" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

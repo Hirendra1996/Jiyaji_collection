@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <defs>
+    <linearGradient id="goldGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="bluePurpleDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#A78BFA" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Crown & Monogram Emblem -->
+  <g transform="translate(15, 12)">
+    <polygon points="26,6 34,18 46,14 40,32 12,32 6,14 18,18" fill="url(#goldGradDark)" />
+    <circle cx="26" cy="4" r="3" fill="#FDE68A" />
+    <circle cx="6" cy="12" r="2.5" fill="#FDE68A" />
+    <circle cx="46" cy="12" r="2.5" fill="#FDE68A" />
+    <rect x="10" y="34" width="32" height="4" rx="2" fill="url(#goldGradDark)" />
+    <path d="M16 42 L26 54 L36 42" stroke="url(#goldGradDark)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  
+  <!-- Brand Text -->
+  <text x="80" y="44" font-family="'Plus Jakarta Sans', 'Cinzel', 'Playfair Display', Georgia, sans-serif" font-size="28" font-weight="800" letter-spacing="3" fill="#FFFFFF">JIYAJI</text>
+  
+  <!-- LX Luxury Tag -->
+  <rect x="205" y="24" width="38" height="22" rx="4" fill="url(#bluePurpleDark)" />
+  <text x="214" y="39" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" letter-spacing="1.5" fill="#0F172A">LX</text>
+  
+  <!-- Tagline -->
+  <text x="82" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" letter-spacing="2.5" fill="#94A3B8">LUXURY ETHNIC COUTURE</text>
+</svg>

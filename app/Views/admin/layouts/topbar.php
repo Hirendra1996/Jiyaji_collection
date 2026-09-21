@@ -30,10 +30,22 @@ $notifCount = count($notifications);
     </div>
 
     <div class="topbar-right">
-        <div class="store-status-pill">
-            <span class="status-dot"></span>
-            <span>Store Online</span>
-        </div>
+        <?php
+        $isMaintMode = (store_setting('maintenance_mode', '0') === '1');
+        $isOrderAcc  = (store_setting('order_acceptance', '1') === '1');
+        ?>
+        <a href="<?= url('admin/settings?tab=operations') ?>" class="store-status-pill" style="text-decoration:none; cursor:pointer;" title="Click to configure Store Operations">
+            <?php if ($isMaintMode): ?>
+                <span class="status-dot" style="background:#f59e0b; box-shadow:0 0 0 3px rgba(245, 158, 11, 0.2);"></span>
+                <span style="color:#d97706; font-weight:700;">Maintenance Mode</span>
+            <?php elseif (!$isOrderAcc): ?>
+                <span class="status-dot" style="background:#ef4444; box-shadow:0 0 0 3px rgba(239, 68, 68, 0.2);"></span>
+                <span style="color:#dc2626; font-weight:700;">Orders Paused</span>
+            <?php else: ?>
+                <span class="status-dot"></span>
+                <span>Store Online</span>
+            <?php endif; ?>
+        </a>
 
         <div class="date-pill">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

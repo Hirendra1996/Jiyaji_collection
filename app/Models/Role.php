@@ -344,6 +344,8 @@ class Role {
                 ['staff', 'manage', 'Manage Staff & RBAC', 'Invite team members, assign roles, and configure permission matrix.'],
                 ['pages', 'view', 'View Static CMS Pages', 'Inspect published brand story and legal compliance pages.'],
                 ['pages', 'manage', 'Manage CMS Content', 'Create, edit, and publish static pages, FAQ items, and SEO metadata.'],
+                ['settings', 'view', 'View Store Settings', 'Inspect brand profile, contact channels, localization, and marketing integrations.'],
+                ['settings', 'manage', 'Configure Store Settings', 'Update store identity, WhatsApp float, notification channels, SEO defaults, and tracking pixels.'],
             ];
 
             $stmtP = $db->prepare("
@@ -395,7 +397,7 @@ class Role {
             if (isset($roleIdMap['super_admin'])) {
                 $saId = $roleIdMap['super_admin'];
                 $checkSa = $db->query("SELECT COUNT(*) FROM role_permissions WHERE role_id = $saId")->fetch_row()[0] ?? 0;
-                if ((int)$checkSa === 0) {
+                if ((int)$checkSa < count($permMap)) {
                     self::syncRolePermissions($saId, array_values($permMap));
                 }
             }

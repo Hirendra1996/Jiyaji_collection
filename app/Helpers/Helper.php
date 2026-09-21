@@ -295,3 +295,40 @@ if (!function_exists('validTs')) {
         return ($ts && $ts > 946684800) ? $ts : false;
     }
 }
+
+if (!function_exists('store_setting')) {
+    /**
+     * Retrieve a store setting value with optional default fallback.
+     */
+    function store_setting(string $key, $default = null): ?string {
+        static $runtimeCache = [];
+        if (array_key_exists($key, $runtimeCache)) {
+            return $runtimeCache[$key];
+        }
+
+        if (class_exists('App\\Models\\StoreSetting')) {
+            $val = \App\Models\StoreSetting::get($key, $default);
+            $runtimeCache[$key] = $val;
+            return $val;
+        }
+
+        return $default !== null ? (string)$default : null;
+    }
+}
+
+if (!function_exists('store_settings')) {
+    /**
+     * Retrieve all store settings or a specific group dictionary.
+     */
+    function store_settings(?string $group = null): array {
+        if (!class_exists('App\\Models\\StoreSetting')) {
+            return [];
+        }
+
+        if ($group !== null) {
+            return \App\Models\StoreSetting::getGroup($group);
+        }
+
+        return \App\Models\StoreSetting::getFlatValues();
+    }
+}
