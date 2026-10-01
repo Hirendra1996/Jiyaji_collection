@@ -144,6 +144,35 @@ $router->group(fn() => \App\Middleware\PortalAuthMiddleware::check(), function()
     $router->get('portal/reviews/{id}', 'Portal/PortalReviewController@show');
     $router->post('portal/reviews/{id}/status', 'Portal/PortalReviewController@moderate');
     $router->post('portal/reviews/{id}/delete', 'Portal/PortalReviewController@destroy');
+
+    // =========================================================================
+    // STAFF PORTAL - SUPPORT DESK & CLIENT CONCIERGE (TICKETS)
+    // =========================================================================
+    $router->get('portal/tickets', 'Portal/PortalTicketController@index');
+    $router->get('portal/tickets/export', 'Portal/PortalTicketController@export');
+    $router->get('portal/tickets/create', 'Portal/PortalTicketController@create');
+    $router->post('portal/tickets/store', 'Portal/PortalTicketController@store');
+    $router->get('portal/tickets/customer-orders/{customer_id}', 'Portal/PortalTicketController@customerOrders');
+    $router->get('portal/tickets/{id}', 'Portal/PortalTicketController@show');
+    $router->post('portal/tickets/{id}/reply', 'Portal/PortalTicketController@reply');
+    $router->post('portal/tickets/{id}/status', 'Portal/PortalTicketController@updateStatus');
+    $router->post('portal/tickets/{id}/priority', 'Portal/PortalTicketController@updatePriority');
+    $router->post('portal/tickets/{id}/assign', 'Portal/PortalTicketController@assign');
+    $router->post('portal/tickets/{id}/delete', 'Portal/PortalTicketController@destroy');
+
+    // =========================================================================
+    // STAFF PORTAL - CAMPAIGNS & OFFERS (COUPONS ENGINE)
+    // =========================================================================
+    $router->get('portal/coupons', 'Portal/PortalCouponController@index');
+    $router->get('portal/coupons/export', 'Portal/PortalCouponController@export');
+    $router->get('portal/coupons/create', 'Portal/PortalCouponController@create');
+    $router->post('portal/coupons/store', 'Portal/PortalCouponController@store');
+    $router->get('portal/coupons/generate-code', 'Portal/PortalCouponController@generateCode');
+    $router->get('portal/coupons/{id}', 'Portal/PortalCouponController@show');
+    $router->get('portal/coupons/{id}/edit', 'Portal/PortalCouponController@edit');
+    $router->post('portal/coupons/{id}/update', 'Portal/PortalCouponController@update');
+    $router->post('portal/coupons/{id}/status', 'Portal/PortalCouponController@toggleStatus');
+    $router->post('portal/coupons/{id}/delete', 'Portal/PortalCouponController@destroy');
 });
 
 // =============================================================================

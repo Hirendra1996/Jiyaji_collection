@@ -418,4 +418,38 @@ class Coupon {
             return [];
         }
     }
+
+    /**
+     * Synchronize category and product restrictions for a coupon.
+     */
+    public static function syncRestrictions(int $couponId, array $categoryIds = [], array $productIds = []): void {
+        try {
+            $db = Database::connect();
+            $db->query("DELETE FROM coupon_category_restrictions WHERE coupon_id = $couponId");
+            if (!empty($categoryIds)) {
+                $stmtC = $db->prepare("INSERT IGNORE INTO coupon_category_restrictions (coupon_id, category_id) VALUES (?, ?)");
+                foreach ($categoryIds as $cId) {
+                    if (is_numeric($cId) && (int)$cId > 0) {
+                        $catId = (int)$cId;
+                        $stmtC->bind_param("ii", $couponId, $catId);
+                        $stmtC->execute();
+                    }
+                }
+            }
+
+            $db->query("DELETE FROM coupon_product_restrictions WHERE coupon_id = $couponId");
+            if (!empty($productIds)) {
+                $stmtP = $db->prepare("INSERT IGNORE INTO coupon_product_restrictions (coupon_id, product_id) VALUES (?, ?)");
+                foreach ($productIds as $pId) {
+                    if (is_numeric($pId) && (int)$pId > 0) {
+                        $prodId = (int)$pId;
+                        $stmtP->bind_param("ii", $couponId, $prodId);
+                        $stmtP->execute();
+                    }
+                }
+            }
+        } catch (Exception $e) {
+            error_log("Coupon::syncRestrictions error: " . $e->getMessage());
+        }
+    }
 }

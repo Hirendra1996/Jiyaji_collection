@@ -16,8 +16,8 @@ $isCategories = strpos($currentUri, 'portal/categories') !== false || strpos($cu
 $isStock = strpos($currentUri, 'portal/stock') !== false;
 $isCustomers = strpos($currentUri, 'portal/customers') !== false || strpos($currentUri, 'admin/customers') !== false;
 $isReviews = strpos($currentUri, 'portal/reviews') !== false || strpos($currentUri, 'admin/reviews') !== false;
-$isTickets = strpos($currentUri, 'admin/tickets') !== false;
-$isCoupons = strpos($currentUri, 'admin/coupons') !== false;
+$isTickets = strpos($currentUri, 'portal/tickets') !== false || strpos($currentUri, 'admin/tickets') !== false;
+$isCoupons = strpos($currentUri, 'portal/coupons') !== false || strpos($currentUri, 'admin/coupons') !== false;
 $isAnalytics = strpos($currentUri, 'admin/analytics') !== false || strpos($currentUri, 'admin/sales-analytics') !== false || strpos($currentUri, 'admin/search-analytics') !== false;
 $isGateways = strpos($currentUri, 'admin/gateways') !== false || strpos($currentUri, 'admin/payment-gateways') !== false;
 $isShipping = strpos($currentUri, 'admin/shipping') !== false || strpos($currentUri, 'admin/shipping-pincodes') !== false;
@@ -248,7 +248,7 @@ if ($staffRole === 'order_manager') {
 
                 <?php if (staff_can('tickets', 'view')): ?>
                     <li>
-                        <a href="<?= url('admin/tickets') ?>" class="nav-item <?= $isTickets ? 'active' : '' ?>" id="navTickets">
+                        <a href="<?= url('portal/tickets') ?>" class="nav-item <?= $isTickets ? 'active' : '' ?>" id="navTickets">
                             <div class="nav-link-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
@@ -257,7 +257,19 @@ if ($staffRole === 'order_manager') {
                                 </svg>
                                 <span>Support Desk</span>
                             </div>
-                            <span class="badge-live" style="background: rgba(236, 72, 153, 0.1); color: #EC4899; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Desk</span>
+                            <?php
+                            $openTicketsCount = 0;
+                            try {
+                                $db = App\Config\Database::connect();
+                                $tktRes = $db->query("SELECT COUNT(*) FROM support_tickets WHERE status IN ('open', 'acknowledged')");
+                                $openTicketsCount = $tktRes ? (int)$tktRes->fetch_row()[0] : 0;
+                            } catch (Exception $e) { $openTicketsCount = 0; }
+                            ?>
+                            <?php if ($openTicketsCount > 0): ?>
+                                <span class="badge-live" style="background: rgba(236, 72, 153, 0.15); color: #EC4899; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;"><?= $openTicketsCount ?> Open</span>
+                            <?php else: ?>
+                                <span class="badge-live" style="background: rgba(16, 185, 129, 0.1); color: #10B981; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;">Clear</span>
+                            <?php endif; ?>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -269,8 +281,16 @@ if ($staffRole === 'order_manager') {
             <div class="nav-section-title">Marketing &amp; Growth</div>
             <ul class="sidebar-nav">
                 <?php if (staff_can('coupons', 'view')): ?>
+                    <?php
+                    $activeCouponsCount = 0;
+                    try {
+                        $db = App\Config\Database::connect();
+                        $cpnRes = $db->query("SELECT COUNT(*) FROM coupons WHERE is_active = 1 AND (expires_at IS NULL OR expires_at >= NOW())");
+                        $activeCouponsCount = $cpnRes ? (int)$cpnRes->fetch_row()[0] : 0;
+                    } catch (Exception $e) { $activeCouponsCount = 0; }
+                    ?>
                     <li>
-                        <a href="<?= url('admin/coupons') ?>" class="nav-item <?= $isCoupons ? 'active' : '' ?>" id="navCoupons">
+                        <a href="<?= url('portal/coupons') ?>" class="nav-item <?= $isCoupons ? 'active' : '' ?>" id="navCoupons">
                             <div class="nav-link-content">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -281,6 +301,11 @@ if ($staffRole === 'order_manager') {
                                 </svg>
                                 <span>Coupons &amp; Offers</span>
                             </div>
+                            <?php if ($activeCouponsCount > 0): ?>
+                                <span class="badge-live" style="background: rgba(217, 119, 6, 0.15); color: #D97706; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;"><?= $activeCouponsCount ?> Active</span>
+                            <?php else: ?>
+                                <span class="badge-live" style="background: rgba(255, 255, 255, 0.05); color: #9CA3AF; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;">0 Active</span>
+                            <?php endif; ?>
                         </a>
                     </li>
                 <?php endif; ?>

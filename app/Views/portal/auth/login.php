@@ -376,6 +376,14 @@
                 <span class="role-btn-email">support@jiyaji.com</span>
             </button>
 
+            <button type="button" class="role-fill-btn" onclick="fillRoleCredentials('marketing@jiyaji.com', 'Admin@123', 'Marketing Lead')">
+                <span class="role-btn-title" style="color: #FBBF24;">
+                    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#F59E0B;"></span>
+                    Marketing Lead
+                </span>
+                <span class="role-btn-email">marketing@jiyaji.com</span>
+            </button>
+
             <button type="button" class="role-fill-btn" onclick="fillRoleCredentials('qa.tester.1789823144@jiyaji.com', 'Admin@123', 'Priya Operations')">
                 <span class="role-btn-title" style="color: #34D399;">
                     <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10B981;"></span>

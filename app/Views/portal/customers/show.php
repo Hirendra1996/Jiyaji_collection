@@ -76,6 +76,12 @@ include __DIR__ . '/../layouts/header.php';
                     </div>
                     <!-- Action buttons -->
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <?php if (staff_can('tickets', 'view')): ?>
+                            <a href="<?= url('portal/tickets/create?customer=' . $encId) ?>" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.28); color: #FFFFFF; font-weight: 700; font-size: 0.82rem; padding: 9px 16px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;" onmouseover="this.style.background='rgba(255,255,255,0.24)';" onmouseout="this.style.background='rgba(255,255,255,0.15)';">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                Open Ticket
+                            </a>
+                        <?php endif; ?>
                         <?php if ($canManage): ?>
                             <a href="<?= url('portal/customers/' . $encId . '/edit') ?>" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.28); color: #FFFFFF; font-weight: 700; font-size: 0.82rem; padding: 9px 16px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;" onmouseover="this.style.background='rgba(255,255,255,0.24)';" onmouseout="this.style.background='rgba(255,255,255,0.15)';">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
